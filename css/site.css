@@ -1,0 +1,198 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	font-family: Helvetica;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+.section-list-wrap ul {
+	list-style: none outside none;
+}
+
+.section-list-wrap ul li {
+	display: inline-block;
+}
+
+.section-list-wrap ul li a {
+	font-size: 12px;
+}
+
+.filter-wrap {
+	height: 80px;
+	background: #777;
+	color: #FFF;
+	font-size: 12px;
+}
+
+.filter-section {
+	height: inherit;
+	position: relative;
+}
+
+.filter-group, .filter-navigation {
+	position: absolute;
+}
+
+.filter-group.area-filter {
+	left: 400px;
+	top: 0;
+} 
+
+.filter-group.price-filter {
+	left: 800px;
+	top: 0;
+}
+
+.filter-navigation {
+	right: 25px;
+	top: 25px;
+}
+
+.filter-navigation input[type="submit"] {
+	background: deepskyblue;
+	border: 1px solid deepskyblue;
+	border-radius: 3px;
+	display: block;
+	height: 30px;
+	padding: 0 15px;
+	cursor: pointer;
+	
+}
+.input-short {
+	width: 60px;
+	height: 24px;
+	line-height: normal;
+	border-radius: 3px;
+	border-style: none;
+	box-shadow: none;
+	color: #333;
+	padding-left: 5px;
+}
+
+.room-number-filter ul {
+	list-style: none outside none;
+}
+
+.room-number-filter ul li {
+	display: inline-block;
+}
+
+.room-number-filter ul li input[type="radio"] {
+	opacity: 0;
+}
+
+.room-number-filter ul li label {
+	background: #FFF;
+	color: #000;
+	border-radius: 2px;
+	display: inline-block;
+	height: 24px;
+	line-height: 24px;
+	width: 24px; 
+	text-align: center;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: normal;
+}
+
+input[type="radio"]:checked + label {
+  color: #FFF;
+  background: #960C2D;
+} 
+
+.flat-list table {
+	width: 100%;
+	
+}
