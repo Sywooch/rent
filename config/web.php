@@ -14,6 +14,9 @@ $config = [
 		'novostroyki' => [
     		'class' => 'app\modules\novostroyki\Novostroyki',
 		],
+		'vtorichnoe' => [
+    		'class' => 'app\modules\vtorichnoe\Vtorichnoe',
+		],
 	),
     'components' => [
         'request' => [

@@ -3,9 +3,8 @@ namespace app\modules\novostroyki\controllers;
 
 use yii\web\Controller;
 use Yii;
-use app\models\Flat;
 
-class NovostroykiController extends Controller
+class NovostroykiMoskvaController extends Controller
 {
 	public $enableCsrfValidation = false;
 	
@@ -20,7 +19,7 @@ class NovostroykiController extends Controller
 	public $priceMax = null;
 	
 	public function actionIndex($roomNumber = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
-		$sql = 'SELECT * FROM flat WHERE FlatSection = "НОВОСТРОЙКИ" AND FlatAction = "ПРОДАЖА"';
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "НОВОСТРОЙКИ" AND FlatAction = "ПРОДАЖА" AND FlatCity = "МОСКВА"';
 		$areaStr = '';
 		$priceStr = '';
 		$roomStr = '';
@@ -51,12 +50,12 @@ class NovostroykiController extends Controller
 		}
 		
 		if(is_numeric($priceMin)) :
-			$this->priceMin = (int)$priceMin*1000;
+			$this->priceMin = (int)$priceMin;
 			$priceStr = 'FlatPrice >= ' . $this->priceMin;
 		endif;
 		
 		if(is_numeric($priceMax)) :
-			$this->priceMax = (int)$priceMax*1000;
+			$this->priceMax = (int)$priceMax;
 			$priceStr = 'FlatPrice <= ' . $this->priceMax;
 		endif;
 		

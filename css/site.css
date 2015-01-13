@@ -103,10 +103,21 @@ a.desc:after {
 
 .section-list-wrap ul li {
 	display: inline-block;
+	background: #D5D5D5;
+	padding: 5px 8px;
+	color: #333;
+}
+
+.section-list-wrap ul li.active {
+	background: #960C2D;
+	color: #FFF;
 }
 
 .section-list-wrap ul li a {
 	font-size: 12px;
+	color: inherit;
+	text-decoration: none;
+	outline: 0;
 }
 
 .filter-wrap {
@@ -125,13 +136,23 @@ a.desc:after {
 	position: absolute;
 }
 
+.filter-group.room-number-filter {
+	left: 20px;
+	top: 0;
+}
+
 .filter-group.area-filter {
-	left: 400px;
+	left: 20%;
 	top: 0;
 } 
 
 .filter-group.price-filter {
-	left: 800px;
+	left: 40%;
+	top: 0;
+}
+
+.filter-group.city-filter {
+	left: 60%;
 	top: 0;
 }
 
@@ -161,6 +182,17 @@ a.desc:after {
 	padding-left: 5px;
 }
 
+.input-long {
+	width: 160px;
+	height: 24px;
+	line-height: normal;
+	border-radius: 3px;
+	border-style: none;
+	box-shadow: none;
+	color: #333;
+	padding-left: 5px;
+}
+
 .room-number-filter ul {
 	list-style: none outside none;
 }
@@ -171,6 +203,8 @@ a.desc:after {
 
 .room-number-filter ul li input[type="radio"] {
 	opacity: 0;
+	position: absolute;
+	cursor: pointer;
 }
 
 .room-number-filter ul li label {
@@ -180,7 +214,9 @@ a.desc:after {
 	display: inline-block;
 	height: 24px;
 	line-height: 24px;
-	width: 24px; 
+	min-width: 24px;
+	width: auto;
+	padding: 0 5px; 
 	text-align: center;
 	cursor: pointer;
 	font-size: 13px;
@@ -192,7 +228,23 @@ input[type="radio"]:checked + label {
   background: #960C2D;
 } 
 
-.flat-list table {
+.flat-list table, .flat-list table tr {
 	width: 100%;
+	font-size: 13px;
+}
+
+.flat-list table thead tr td {
+	font-size: inherit;
+	height: 40px;
 	
+}
+
+.flat-list table tbody tr td {
+	height: 60px;
+	font-size: inherit;
+}
+
+.flat-list table td.front-image-cell {
+	width: 110px;
+	text-align: center;
 }

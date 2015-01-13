@@ -3,9 +3,8 @@ namespace app\modules\novostroyki\controllers;
 
 use yii\web\Controller;
 use Yii;
-use app\models\Flat;
 
-class NovostroykiController extends Controller
+class NovostroykiPodmoskovieController extends Controller
 {
 	public $enableCsrfValidation = false;
 	
@@ -19,13 +18,24 @@ class NovostroykiController extends Controller
 	public $priceMin = null;
 	public $priceMax = null;
 	
-	public function actionIndex($roomNumber = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
+	public $city = null;
+	
+	public function actionIndex($roomNumber = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null, $city = null) {
+		setlocale(LC_ALL, 'ru_RU.CP1251');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "НОВОСТРОЙКИ" AND FlatAction = "ПРОДАЖА"';
 		$areaStr = '';
 		$priceStr = '';
 		$roomStr = '';
 		$strArr = [];
 		
+		if($city) {
+			$this->city = $city;
+			header('Content-Type: text/html; charset=utf-8');
+			$sql .= ' AND FlatCity = "' . mb_strtoupper($city, 'utf-8') . '"'; 
+		} else {
+			$sql .= ' AND NOT FlatCity = "МОСКВА"';
+		}
+			
 		if(in_array($roomNumber, $this->rooms)) :
 			$this->roomNumber = $roomNumber;
 			$roomStr = 'FlatRoomNumber = ' . $roomNumber;
@@ -51,12 +61,12 @@ class NovostroykiController extends Controller
 		}
 		
 		if(is_numeric($priceMin)) :
-			$this->priceMin = (int)$priceMin*1000;
+			$this->priceMin = (int)$priceMin;
 			$priceStr = 'FlatPrice >= ' . $this->priceMin;
 		endif;
 		
 		if(is_numeric($priceMax)) :
-			$this->priceMax = (int)$priceMax*1000;
+			$this->priceMax = (int)$priceMax;
 			$priceStr = 'FlatPrice <= ' . $this->priceMax;
 		endif;
 		
@@ -84,6 +94,7 @@ class NovostroykiController extends Controller
 			'areaMax' => $this->areaMax,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'city' => $this->city
 		]);
 	}
 	

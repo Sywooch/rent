@@ -8,8 +8,94 @@ class NovostroykiPodmoskovieController extends Controller
 {
 	public $enableCsrfValidation = false;
 	
-	public function actionIndex() {
-		return $this->render('index');
+	public $rooms = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+	
+	public $roomNumber = null;
+	
+	public $areaMin = null;
+	public $areaMax = null;
+	
+	public $priceMin = null;
+	public $priceMax = null;
+	
+	public $city = null;
+	
+	public function actionIndex($roomNumber = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null, $city = null) {
+		setlocale(LC_ALL, 'ru_RU.CP1251');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "НОВОСТРОЙКИ" AND FlatAction = "ПРОДАЖА"';
+		$areaStr = '';
+		$priceStr = '';
+		$roomStr = '';
+		$strArr = [];
+		
+		if($city) {
+			$this->city = $city;
+			header('Content-Type: text/html; charset=utf-8');
+			$sql .= ' AND FlatCity = "' . mb_strtoupper($city, 'utf-8') . '"'; 
+		} else {
+			$sql .= ' AND NOT FlatCity = "МОСКВА"';
+		}
+			
+		if(in_array($roomNumber, $this->rooms)) :
+			$this->roomNumber = $roomNumber;
+			$roomStr = 'FlatRoomNumber = ' . $roomNumber;
+			array_push($strArr, $roomStr);
+		endif;
+		
+		if(is_numeric($areaMin)) :
+			$this->areaMin = (int)$areaMin;
+			$areaStr = 'FlatArea >= ' . $this->areaMin;
+		endif;
+		
+		if(is_numeric($areaMax)) :
+			$this->areaMax = (int)$areaMax;
+			$areaStr = 'FlatArea <= ' . $this->areaMax;
+		endif;
+		
+		if(is_numeric($areaMin) && is_numeric($areaMax)) {
+			$areaStr = 'FlatArea BETWEEN ' . $this->areaMin . ' AND ' . $this->areaMax;
+		}
+			
+		if(!empty($areaStr)) {
+			array_push($strArr, $areaStr);
+		}
+		
+		if(is_numeric($priceMin)) :
+			$this->priceMin = (int)$priceMin;
+			$priceStr = 'FlatPrice >= ' . $this->priceMin;
+		endif;
+		
+		if(is_numeric($priceMax)) :
+			$this->priceMax = (int)$priceMax;
+			$priceStr = 'FlatPrice <= ' . $this->priceMax;
+		endif;
+		
+		if(is_numeric($priceMin) && is_numeric($priceMax)) :
+			$priceStr = 'FlatPrice BETWEEN ' . $this->priceMin . ' AND ' . $this->priceMax;
+		endif;
+		
+		if(!empty($priceStr)) {
+			array_push($strArr, $priceStr);
+		}
+		
+		if(count($strArr) > 1) {
+			$sql .= ' AND ' . implode(' AND ', $strArr);
+		} elseif(count($strArr) == 1) {
+			$sql .= ' AND ' . $strArr[0];
+		}
+		
+		$connection = Yii::$app->db;
+		$flatList = $connection->createCommand($sql)->queryAll();
+		
+		return $this->render('index', [
+			'flatList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'areaMin' => $this->areaMin,
+			'areaMax' => $this->areaMax,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+			'city' => $this->city
+		]);
 	}
 	
 	
