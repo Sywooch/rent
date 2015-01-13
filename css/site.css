@@ -121,7 +121,7 @@ a.desc:after {
 }
 
 .filter-wrap {
-	height: 80px;
+	height: auto;
 	background: #777;
 	color: #FFF;
 	font-size: 12px;
@@ -132,12 +132,31 @@ a.desc:after {
 	position: relative;
 }
 
+.filter-group select {
+	color: #333;
+}
+
 .filter-group, .filter-navigation {
 	position: absolute;
 }
 
 .filter-group.room-number-filter {
 	left: 20px;
+	top: 0;
+}
+
+.filter-group.flat-type-filter {
+	left: 20px;
+	top: 0;
+}
+
+.filter-group.room-numbers-filter {
+	left: 40%;
+	top: 0;
+}
+
+.filter-group.vtorichka-price-filter {
+	left: 20%;
 	top: 0;
 }
 
@@ -227,6 +246,72 @@ input[type="radio"]:checked + label {
   color: #FFF;
   background: #960C2D;
 } 
+
+.fast-search-wrap {
+	height: 80px;
+	position: relative;
+	border-bottom: 2px solid #960C2D;
+	
+}
+
+.fast-search-wrap:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0px;
+    clear: both;
+    height: 0px;
+}
+
+.fast-search {
+	position: absolute;
+}
+
+.fast-search.search-room {
+	left: 60%;
+	top: 0; 
+}
+
+.fast-search.search-flat-moskow {
+	left: 20%;
+	top: 0;
+	
+}
+
+.hidden-filter {
+	background: #DDD;
+	width: 300px;
+	height: 300px;
+	z-index: 99999;
+}
+
+.search-flat-moskow .hidden-filter {
+	display: none;
+	 
+}
+
+.search-flat-moskow:hover > .hidden-filter {
+	display: block;
+}
+
+.fast-search a {
+	color: #FFF;
+	text-decoration: none;
+}
+.filter-groups {
+	height: 80px;
+	position: relative;
+}
+
+.flat-list {
+	font-size: 0;
+}
+
+.flat-item {
+	display: inline-block;
+	width: 50%;
+	height: 400px;
+	font-size: 13px;
+}
 
 .flat-list table, .flat-list table tr {
 	width: 100%;

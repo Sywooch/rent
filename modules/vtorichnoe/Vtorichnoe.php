@@ -9,8 +9,8 @@ class Vtorichnoe extends Module
 	public $defaultRoute = 'vtorichnoe';
 	
 	public $controllerMap = [
-		'vtorichnoe' => 'app\modules\vtorichnoe\controllers\VtorichnoeController',
-		
+		'vtorichnoe' => 'app\modules\vtorichnoe\controllers\VtorichnoeProdazhaController',
+		'arenda' => 'app\modules\vtorichnoe\controllers\VtorichnoeArendaController',
 	];
 	
 	/*

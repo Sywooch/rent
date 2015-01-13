@@ -5,7 +5,7 @@ use yii\web\Controller;
 use Yii;
 use app\models\Flat;
 
-class VtorichnoeController extends Controller
+class VtorichnoeArendaController extends Controller
 {
 	public $enableCsrfValidation = false;
 	

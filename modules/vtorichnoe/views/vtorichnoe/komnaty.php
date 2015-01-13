@@ -13,20 +13,6 @@ $this->title = 'Аренда квартир - Вторичное';
 		<form action="" method="get">
 		<div class="fast-search-wrap">
 			<span>Быстрый поиск</span>
-			<div class="fast-search search-flat-moskow">
-				<span>Квартиры в Москве</span>
-				<div class="hidden-filter">
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<a href="/vtorichnoe/prodazha/kvartiry/moskva">Комнаты</a>
-				</div>
-				
-			</div>
 			<div class="fast-search search-room">
 				<a href="/vtorichnoe/prodazha/komnaty">Комнаты</a>
 			</div>

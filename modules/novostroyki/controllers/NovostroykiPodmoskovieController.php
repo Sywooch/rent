@@ -21,7 +21,6 @@ class NovostroykiPodmoskovieController extends Controller
 	public $city = null;
 	
 	public function actionIndex($roomNumber = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null, $city = null) {
-		setlocale(LC_ALL, 'ru_RU.CP1251');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "НОВОСТРОЙКИ" AND FlatAction = "ПРОДАЖА"';
 		$areaStr = '';
 		$priceStr = '';

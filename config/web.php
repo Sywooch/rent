@@ -55,6 +55,9 @@ $config = [
 			'baseUrl' => '/',
     		'enablePrettyUrl' => true,
     		'showScriptName' => false,
+    		'rules' => [
+    			'vtorichnoe/prodazha/komnaty' => 'vtorichnoe/vtorichnoe/komnaty'
+    		]
 		],
     ],
     'params' => $params,
