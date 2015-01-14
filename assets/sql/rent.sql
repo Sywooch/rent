@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2015 at 10:28 PM
+-- Generation Time: Jan 14, 2015 at 05:11 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -71,6 +71,40 @@ INSERT INTO `flat` (`FlatId`, `FlatSection`, `FlatType`, `FlatAction`, `FlatFron
 (21, 'ВТОРИЧНОЕ', 'КВАРТИРА', 'ПРОДАЖА', NULL, '', 'ул. 1-я Владимирская, д.19/1', 'МОСКВА', 3, 85, 0, 12500000, ''),
 (22, 'ВТОРИЧНОЕ', 'КОМНАТА', 'ПРОДАЖА', NULL, '', 'Сумской проезд д. 29', 'МОСКВА', 1, 0, 0, 2900000, ''),
 (23, 'ВТОРИЧНОЕ', 'КОМНАТА', 'ПРОДАЖА', NULL, '', 'ул. Уржумская д.3 к.1', 'МОСКВА', 1, 0, 0, 3800000, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `house`
+--
+
+CREATE TABLE IF NOT EXISTS `house` (
+  `HouseId` int(50) NOT NULL AUTO_INCREMENT,
+  `HouseType` varchar(255) COLLATE utf8_bin NOT NULL,
+  `HouseAction` varchar(255) COLLATE utf8_bin NOT NULL,
+  `HouseDirectionId` int(50) NOT NULL,
+  `HouseDistance` int(50) NOT NULL,
+  `HouseArea` int(50) DEFAULT NULL,
+  `HousePlotArea` int(50) DEFAULT NULL,
+  `HousePrice` int(50) NOT NULL,
+  PRIMARY KEY (`HouseId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `house`
+--
+
+INSERT INTO `house` (`HouseId`, `HouseType`, `HouseAction`, `HouseDirectionId`, `HouseDistance`, `HouseArea`, `HousePlotArea`, `HousePrice`) VALUES
+(1, 'ДОМ', 'ПРОДАЖА', 1, 50, 170, 6, 3900),
+(2, 'ДОМ', 'ПРОДАЖА', 2, 34, 210, 8, 5500),
+(3, 'ДОМ', 'ПРОДАЖА', 2, 35, 190, 7, 4800),
+(4, 'ДОМ', 'ПРОДАЖА', 3, 56, 140, 4, 2900),
+(5, 'ДОМ', 'ПРОДАЖА', 6, 65, 180, 5, 3400),
+(6, 'ДОМ', 'ПРОДАЖА', 8, 40, 200, 6, 4600),
+(7, 'УЧАСТОК', 'ПРОДАЖА', 2, 40, NULL, 6, 400),
+(8, 'УЧАСТОК', 'ПРОДАЖА', 3, 55, NULL, 8, 750),
+(9, 'ДОМ', 'АРЕНДА', 4, 35, 160, 6, 20000),
+(10, 'ДОМ', 'АРЕНДА', 5, 25, 210, 8, 40000);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

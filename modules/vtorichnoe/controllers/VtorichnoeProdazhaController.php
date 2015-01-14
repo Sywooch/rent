@@ -133,5 +133,130 @@ class VtorichnoeProdazhaController extends Controller
 		]);
 	}
 	
+	public function actionOdnokomnatnyekvartirymoskva() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 1 AND FlatCity = "МОСКВА"';
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('index', [
+			'flatList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+		]);
+	}
+	
+	public function actionDvuhkomnatnyekvartirymoskva() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 2 AND FlatCity = "МОСКВА"';
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('index', [
+			'flatList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+		]);
+	}
+	
+	public function actionTrehkomnatnyekvartirymoskva() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 3 AND FlatCity = "МОСКВА"';
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('index', [
+			'flatList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+		]);
+	}
+	
+	public function actionChetyrehkomnatnyekvartirymoskva() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber >= 4 AND FlatCity = "МОСКВА"';
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('index', [
+			'flatList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+		]);
+	}
+
+	public function actionOdnokomnatnyekvartirypodmoskovie() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 1 AND NOT FlatCity = "МОСКВА"';
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('index', [
+			'flatList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+		]);
+	}
+	
+	public function actionDvuhkomnatnyekvartirypodmoskovie() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 2 AND NOT FlatCity = "МОСКВА"';
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('index', [
+			'flatList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+		]);
+	}
+	
+	public function actionTrehkomnatnyekvartirypodmoskovie() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 3 AND NOT FlatCity = "МОСКВА"';
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('index', [
+			'flatList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+		]);
+	}
+	
+	public function actionChetyrehkomnatnyekvartirypodmoskovie() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber >= 4 AND NOT FlatCity = "МОСКВА"';
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('index', [
+			'flatList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+		]);
+	}
+	
+	public function getFlatList($sql) {
+		$connection = Yii::$app->db;
+		return $connection->createCommand($sql)->queryAll();
+	}
+	
 	
 }

@@ -4,6 +4,21 @@
 	font-size: 14px;
 	font-family: Helvetica;
 }
+body {
+	background: #EEE;
+}
+.container {
+	width: 1280px;
+	padding: 0 30px;
+}
+
+.content-right-side {
+	padding-left: 300px;
+}
+
+p {
+	margin: 0;
+}
 
 html,
 body {
@@ -121,6 +136,7 @@ a.desc:after {
 }
 
 .filter-wrap {
+	min-height: 80px;
 	height: auto;
 	background: #777;
 	color: #FFF;
@@ -134,6 +150,10 @@ a.desc:after {
 
 .filter-group select {
 	color: #333;
+	height: 24px;
+	border-style: none;
+	border-radius: 3px;
+	padding-left: 3px;
 }
 
 .filter-group, .filter-navigation {
@@ -175,6 +195,23 @@ a.desc:after {
 	top: 0;
 }
 
+.left-25 {
+	left: 25%;
+}
+
+
+.left-70 {
+	left: 70%;
+}
+
+.left-75 {
+	left: 75%;
+}
+
+.left-80 {
+	left: 80%;
+}
+
 .filter-navigation {
 	right: 25px;
 	top: 25px;
@@ -212,6 +249,14 @@ a.desc:after {
 	padding-left: 5px;
 }
 
+.input-40 {
+	width: 40px;
+}
+
+.input-50 {
+	width: 50px;
+}
+
 .room-number-filter ul {
 	list-style: none outside none;
 }
@@ -245,10 +290,78 @@ a.desc:after {
 input[type="radio"]:checked + label {
   color: #FFF;
   background: #960C2D;
-} 
+}
+
+.fast-filter-list {
+	list-style: none outside none;
+}
+
+.fast-filter-list:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0px;
+    content: "";
+    clear: both;
+    height: 0px;
+    
+}
+
+
+.fast-filter-list > li {
+	margin-left: 60px;
+	height: 36px;
+	float: left;
+}
+
+.fast-filter-list li a, .fast-filter-list li span {
+	display: block;
+	height: 36px;
+	line-height: 36px;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.fast-filter-list > li > ul {
+	 display: none;
+    list-style: outside none none;
+    margin: 0px;
+    position: absolute;
+    top: 36px;
+    z-index: 99999;
+    background: #A7A7A7;
+    width: 185px;
+	
+}
+
+.num-item {
+	display: inline-block;
+	margin: 0 15px;
+}
+
+
+
+.location-list li {
+	list-style: none outside none;
+	float: left;
+	
+	width: 50%;
+}
+
+.location-list li a {
+	font-size: 13px;
+}	
+
+
+
+.fast-filter-list li:hover > ul {
+	display: block;
+}
+
 
 .fast-search-wrap {
-	height: 80px;
+	height: 40px;
 	position: relative;
 	border-bottom: 2px solid #960C2D;
 	
@@ -309,8 +422,29 @@ input[type="radio"]:checked + label {
 .flat-item {
 	display: inline-block;
 	width: 50%;
-	height: 400px;
+	height: 165px;
 	font-size: 13px;
+	/*border: 1px solid #CCC;*/
+	box-sizing: border-box;
+	
+}
+
+.flat-item-inner {
+	/*border: 1px solid red;*/
+	height: 150px;
+	background: #FFF;
+	border-radius: 4px;
+	
+}
+
+.flat-item:nth-of-type(even) .flat-item-inner {
+	margin-left: 8px;
+	
+}
+
+.flat-item:nth-of-type(odd) .flat-item-inner {
+	margin-right: 8px;
+	
 }
 
 .flat-list table, .flat-list table tr {

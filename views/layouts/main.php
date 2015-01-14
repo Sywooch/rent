@@ -38,6 +38,8 @@ AppAsset::register($this);
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'Новостройки', 'url' => ['/novostroyki']],
                     ['label' => 'Вторичное', 'url' => ['/vtorichnoe']],
+                    ['label' => 'Загородная', 'url' => ['/zagorodnaya']],
+                    ['label' => 'Коммерческая', 'url' => ['/kommercheskaya']],
                     ['label' => 'Contact', 'url' => ['/site/contact']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
@@ -53,7 +55,10 @@ AppAsset::register($this);
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
-            <?= $content ?>
+            <div class="content-right-side">
+            	<?= $content ?>
+            </div>
+            
         </div>
     </div>
 

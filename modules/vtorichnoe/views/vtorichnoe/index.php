@@ -12,25 +12,53 @@ $this->title = 'Аренда квартир - Вторичное';
 	<div class="filter-section" id="novostroyki">
 		<form action="" method="get">
 		<div class="fast-search-wrap">
-			<span>Быстрый поиск</span>
-			<div class="fast-search search-flat-moskow">
-				<span>Квартиры в Москве</span>
-				<div class="hidden-filter">
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<h5>По числу комнат</h5>
-					<a href="/vtorichnoe/prodazha/kvartiry/moskva">Комнаты</a>
-				</div>
-				
-			</div>
-			<div class="fast-search search-room">
-				<a href="/vtorichnoe/prodazha/komnaty">Комнаты</a>
-			</div>
+			<ul class="fast-filter-list">
+				<li>
+					<span>Быстрый поиск</span>
+				</li>
+				<li>
+					<a href="/vtorichnoe/prodazha/kvartiry-moskva">Квартиры в Москве</a>
+					<ul>
+						<li>
+							<p>По числу комнат</p>
+							<ul>
+								<li class="num-item"><a href="/vtorichnoe/prodazha/odnokomnatnye-kvartiry-moskva">1</a></li>
+								<li class="num-item"><a href="/vtorichnoe/prodazha/dvuhkomnatnye-kvartiry-moskva">2</a></li>
+								<li class="num-item"><a href="/vtorichnoe/prodazha/trehkomnatnye-kvartiry-moskva">3</a></li>
+								<li class="num-item"><a href="/vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-moskva">4+</a></li>
+							</ul>
+							<p>По расположению</p>
+							<ul class="location-list">
+								<li><a>по метро</a></li>
+								<li><a>по районам</a></li>
+								<li><a>по улице</a></li>
+								<li><a>по округам</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+				</li>
+				<li>
+					<a>Квартиры в Подмосковье</a>
+					<ul>
+						<li>
+							<p>По числу комнат</p>
+							<ul>
+								<li class="num-item"><a href="/vtorichnoe/prodazha/odnokomnatnye-kvartiry-podmoskovie">1</a></li>
+								<li class="num-item"><a href="/vtorichnoe/prodazha/dvuhkomnatnye-kvartiry-podmoskovie">2</a></li>
+								<li class="num-item"><a href="/vtorichnoe/prodazha/trehkomnatnye-kvartiry-podmoskovie">3</a></li>
+								<li class="num-item"><a href="/vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-podmoskovie">4+</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="/vtorichnoe/prodazha/komnaty">Комнаты</a>
+				</li>
+			</ul>
 		</div>
+			
+		
 		<div class="filter-groups">
 			<div class="filter-group flat-type-filter">
 			<h5>Тип недвижимости:</h5>
@@ -74,8 +102,10 @@ $this->title = 'Аренда квартир - Вторичное';
 <div class="flat-list">
 	<?php foreach($flatList as $flat) : ?>
 	<div class="flat-item">
+		<div c	lass="flat-item-inner">
 		<img src="/assets/jpg/flat.jpg" />
 		<p><?php echo $flat['FlatAddress']; ?></p>
+		</div>
 	</div>	
 	<?php endforeach; ?>
 </div>

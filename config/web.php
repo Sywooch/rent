@@ -17,6 +17,12 @@ $config = [
 		'vtorichnoe' => [
     		'class' => 'app\modules\vtorichnoe\Vtorichnoe',
 		],
+		'zagorodnaya' => [
+    		'class' => 'app\modules\zagorodnaya\Zagorodnaya',
+		],
+		'kommercheskaya' => [
+    		'class' => 'app\modules\kommercheskaya\Kommercheskaya',
+		],
 	),
     'components' => [
         'request' => [
@@ -56,7 +62,16 @@ $config = [
     		'enablePrettyUrl' => true,
     		'showScriptName' => false,
     		'rules' => [
-    			'vtorichnoe/prodazha/komnaty' => 'vtorichnoe/vtorichnoe/komnaty'
+    			'vtorichnoe/prodazha/odnokomnatnye-kvartiry-moskva' => 'vtorichnoe/vtorichnoe/odnokomnatnyekvartirymoskva',
+    			'vtorichnoe/prodazha/dvuhkomnatnye-kvartiry-moskva' => 'vtorichnoe/vtorichnoe/dvuhkomnatnyekvartirymoskva',
+    			'vtorichnoe/prodazha/trehkomnatnye-kvartiry-moskva' => 'vtorichnoe/vtorichnoe/trehkomnatnyekvartirymoskva',
+    			'vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-moskva' => 'vtorichnoe/vtorichnoe/chetyrehkomnatnyekvartirymoskva',
+    			'vtorichnoe/prodazha/odnokomnatnye-kvartiry-podmoskovie' => 'vtorichnoe/vtorichnoe/odnokomnatnyekvartirypodmoskovie',
+    			'vtorichnoe/prodazha/dvuhkomnatnye-kvartiry-podmoskovie' => 'vtorichnoe/vtorichnoe/dvuhkomnatnyekvartirypodmoskovie',
+    			'vtorichnoe/prodazha/trehkomnatnye-kvartiry-podmoskovie' => 'vtorichnoe/vtorichnoe/trehkomnatnyekvartirypodmoskovie',
+    			'vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-podmoskovie' => 'vtorichnoe/vtorichnoe/chetyrehkomnatnyekvartirypodmoskovie',
+    			'vtorichnoe/prodazha/<action>' => 'vtorichnoe/vtorichnoe/<action>',
+    			'zagorodnaya/<action>' => 'zagorodnaya/zagorodnaya/<action>'
     		]
 		],
     ],
