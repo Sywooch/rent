@@ -87,7 +87,7 @@ class NovostroykiPodmoskovieController extends Controller
 		$flatList = $connection->createCommand($sql)->queryAll();
 		
 		return $this->render('index', [
-			'flatList' => $flatList,
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'areaMin' => $this->areaMin,
 			'areaMax' => $this->areaMax,

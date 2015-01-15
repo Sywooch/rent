@@ -1,5 +1,5 @@
 <?php
-$this->title = 'Аренда квартир - Вторичное Комнаты';
+$this->title = 'Аренда квартир - Продажа квартир в Подмосковье';
 ?>
 <div class="section-list-wrap">
 	<ul>
@@ -111,7 +111,7 @@ $this->title = 'Аренда квартир - Вторичное Комнаты'
 		</form>
 	</div>
 </div>
-<h2>Продажа квартир и комнат в Москве и Подмосковье</h2>
+<h2>Продажа квартир в Подмосковье</h2>
 <div class="flat-list">
 	<?php foreach($itemList as $item) : ?>
 	<div class="flat-item">

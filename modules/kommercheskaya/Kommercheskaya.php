@@ -10,7 +10,7 @@ class Kommercheskaya extends Module
 	
 	public $controllerMap = [
 		'kommercheskaya' => 'app\modules\kommercheskaya\controllers\KommercheskayaController',
-		
+		'arenda' => 'app\modules\kommercheskaya\controllers\KommercheskayaArendaController',
 	];
 	
 	/*

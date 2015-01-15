@@ -18,6 +18,9 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/chosen.jquery.js"></script>
+    <?php $this->registerCssFile('/css/chosen.css'); ?>
     <?php $this->head() ?>
 </head>
 <body>

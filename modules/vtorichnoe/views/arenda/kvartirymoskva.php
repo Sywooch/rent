@@ -1,5 +1,5 @@
 <?php
-$this->title = 'Аренда квартир - Вторичное';
+$this->title = 'Аренда квартир в Москве';
 ?>
 <div class="section-list-wrap">
 	<ul>
@@ -9,75 +9,31 @@ $this->title = 'Аренда квартир - Вторичное';
 	</ul>
 </div>
 <div class="filter-wrap">
-	<div class="filter-section" id="novostroyki">
-		<form action="/vtorichnoe" method="get">
+	<div class="filter-section">
+		<form action="/vtorichnoe/arenda" method="get">
 		<div class="fast-search-wrap">
 			<ul class="fast-filter-list">
 				<li>
 					<span>Быстрый поиск</span>
 				</li>
-				<li>
-					<a href="/vtorichnoe/prodazha/kvartiry-moskva">Квартиры в Москве</a>
-					<ul>
-						<li>
-							<p>По числу комнат</p>
-							<ul>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/odnokomnatnye-kvartiry-moskva">1</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/dvuhkomnatnye-kvartiry-moskva">2</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/trehkomnatnye-kvartiry-moskva">3</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-moskva">4+</a></li>
-							</ul>
-							<p>По расположению</p>
-							<ul class="location-list">
-								<li><a>по метро</a></li>
-								<li><a>по районам</a></li>
-								<li><a>по улице</a></li>
-								<li><a>по округам</a></li>
-							</ul>
-						</li>
-						
-					</ul>
+				<li class="active">
+					<a href="/vtorichnoe/arenda/kvartiry-moskva">Квартиры в Москве</a>
 				</li>
 				<li>
-					<a href="/vtorichnoe/prodazha/kvartiry-podmoskovie">Квартиры в Подмосковье</a>
-					<ul>
-						<li>
-							<p>По числу комнат</p>
-							<ul>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/odnokomnatnye-kvartiry-podmoskovie">1</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/dvuhkomnatnye-kvartiry-podmoskovie">2</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/trehkomnatnye-kvartiry-podmoskovie">3</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-podmoskovie">4+</a></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="/vtorichnoe/prodazha/komnaty">Комнаты</a>
+					<a href="/vtorichnoe/arenda/kvartiry-podmoskovie">Квартиры в Подмосковье</a>
+					
 				</li>
 			</ul>
 		</div>
 			
-		
 		<div class="filter-groups">
-			<div class="filter-group flat-type-filter">
-			<h5>Тип недвижимости:</h5>
-			<select name="flatType">
-				<option <?php if(!$flatType){echo 'selected';} ?> value="">-</option>
-				<option <?php if($flatType == 'fm'){echo 'selected';} ?> value="fm">Квартира в Москве</option>
-				<option <?php if($flatType == 'fmo'){echo 'selected';} ?> value="fmo">Квартира в МО</option>
-				<option <?php if($flatType == 'rm'){echo 'selected';} ?> value="rm">Комната в Москве</option>
-				<option <?php if($flatType == 'rmo'){echo 'selected';} ?> value="rmo">Комната в МО</option>
-				<option <?php if($flatType == 'pm'){echo 'selected';} ?> value="pm">Доля в Москве</option>
-				<option <?php if($flatType == 'pmo'){echo 'selected';} ?> value="pmo">Доля в МО</option>
-			</select>
-		</div>
+			
 		<div class="filter-group vtorichka-price-filter">
-			<h5>Цена (млн. руб):</h5>
+			<h5>Цена (руб/месяц):</h5>
 			<div class="input-wrap">
-				<input class="input-short" type="text" name="priceMin" value="<?php if($priceMin){echo $priceMin/1000000;}  ?>" />
+				<input class="input-short" type="text" name="priceMin" value="<?php if($priceMin){echo $priceMin;}  ?>" />
 				<span>—</span>
-				<input class="input-short" type="text" name="priceMax" value="<?php if($priceMax){echo $priceMax/1000000;} ?>" />
+				<input class="input-short" type="text" name="priceMax" value="<?php if($priceMax){echo $priceMax;} ?>" />
 			</div>
 		</div>
 		<div class="filter-group room-numbers-filter">
@@ -111,7 +67,7 @@ $this->title = 'Аренда квартир - Вторичное';
 		</form>
 	</div>
 </div>
-<h2>Продажа квартир и комнат в Москве и Подмосковье</h2>
+<h2>Аренда квартир в Москве</h2>
 <div class="flat-list">
 	<?php foreach($itemList as $item) : ?>
 	<div class="flat-item">
@@ -195,3 +151,4 @@ $this->title = 'Аренда квартир - Вторичное';
 	</div>
 	<?php endforeach; ?>
 </div>
+

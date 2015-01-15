@@ -54,42 +54,57 @@ $this->title = 'Аренда квартир - Новостройки Москв�
 		</form>
 	</div>
 </div>
+<h2>Продажа квартир в новостройках Москвы</h2>
 <div class="flat-list">
-	<table>
-		<thead>
-			<tr>
-				<td class="front-image-cell">Фото</td>
-				<td>Название</td>
-				<td>Адресс</td>
-				<td>Город</td>
-				<td>Количество комнат</td>
-				<td>Площадь</td>
-				<td>Цена</td>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach($flatList as $flat) : ?>
-			<tr>
-				<td class="front-image-cell">
-					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 					width="32px" height="24.191px" viewBox="0 0 32 24.191" style="enable-background:new 0 0 32 24.191;" xml:space="preserv			e">
-<g>
-	<path d="M1.38,11.504l13.288-0.527l8.085-9.339l7.727,11.579L32,12.999l-9.09-12.91l-9.283,1.719V0.158L12.862,0l-2.304,0.487
-		v1.889L7.463,2.949L0,9.729v1.785C0,11.515,0.763,11.495,1.38,11.504z"/>
-	<path d="M22.702,2.438l-7.804,9.016L2.155,11.961v10.82l11.708,1.406v0.004l7.319-0.854v-8.43l3.368-0.004v8.041l5.395-0.662v-8.99
-		L22.702,2.438z M7.126,19.404l-3.393-0.218v-4.33l3.393,0.002V19.404z M12.862,19.751l-3.945-0.253v-4.66l3.945,0.001V19.751z
-		 M19.522,19.549l-4.165,0.273v-4.94l4.165-0.003V19.549z M28.97,18.957l-3.144,0.207v-4.275l3.144-0.004V18.9
-57z"/>
-</svg>
-				</td>
-				<td><?php echo $flat['FlatName']; ?></td>
-				<td><?php echo $flat['FlatAddress']; ?></td>
-				<td><?php echo $flat['FlatCity']; ?></td>
-				<td><?php echo $flat['FlatRoomNumber']; ?></td>
-				<td><?php echo $flat['FlatArea']; ?></td>
-				<td><?php echo $flat['FlatPrice']; ?></td>
-			</tr>	
-			<?php endforeach; ?>
-		</tbody>
-	</table>
+	<?php foreach($itemList as $item) : ?>
+	<div class="flat-item">
+		<div class="flat-item-inner">
+			<img src="/assets/jpg/flat.jpg" />
+			<div class="flat-item-info">
+				<p>
+					<span class="title">Тип обьекта:</span>
+					<span><?php
+					 $low = mb_convert_case($item['FlatType'], MB_CASE_LOWER, 'UTF-8');
+					 echo mb_convert_case($low, MB_CASE_TITLE, 'UTF-8');
+					 ?></span>
+				</p>
+				<?php if(!empty($item['CommerceClass'])) : ?>
+				<p>
+					<span class="title">Класс офиса:</span>
+					<span><?php echo $officeClasses[$item['CommerceClass']]['classTitle']; ?></span>
+				</p>
+				<?php endif; ?>
+				<p>
+					<span class="title">Тип обьявления:</span>
+					<span><?php
+					 $low = mb_convert_case($item['FlatAction'], MB_CASE_LOWER, 'UTF-8');
+					 echo mb_convert_case($low, MB_CASE_TITLE, 'UTF-8');
+					 ?></span>
+				</p>
+				<p>
+					<span class="title">Адресс:</span>
+					<span><?php
+					 $low = mb_convert_case($item['FlatAddress'], MB_CASE_LOWER, 'UTF-8');
+					 echo mb_convert_case($low, MB_CASE_TITLE, 'UTF-8');
+					  ?></span>
+				</p>
+				<p>
+					<span class="title">Комнатность:</span>
+					<span><?php echo $item['FlatRoomNumber']; ?>
+					
+					 </span>
+				</p>
+				<p>
+					<span class="title">Плошадь:</span>
+					<span><?php echo $item['FlatArea'] . ' м²'; ?></span>
+				</p>
+				<p>
+					<span class="title">Цена:</span>
+					<span><?php echo (int)$item['FlatPrice']/1000 . ' тыс. руб/м²'; ?></span>
+				</p>
+				
+			</div>
+		</div>
+	</div>
+	<?php endforeach; ?>
 </div>

@@ -4,6 +4,7 @@ namespace app\modules\vtorichnoe\controllers;
 use yii\web\Controller;
 use Yii;
 use app\models\Flat;
+use app\models\Subway;
 
 class VtorichnoeProdazhaController extends Controller
 {
@@ -17,6 +18,8 @@ class VtorichnoeProdazhaController extends Controller
 	public $priceMax = null;
 	
 	public $flatType = null;
+	
+	public $subway = null;
 	
 	public $flatTypes = [
 		'fm' => [
@@ -45,13 +48,26 @@ class VtorichnoeProdazhaController extends Controller
 		]
 	];
 	
-	public function actionIndex($roomNumber = null, $flatType = null, $priceMin = null, $priceMax = null) {
+	public function actionIndex($subway = null, $roomNumber = null, $flatType = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА"';
 		$typeStr = '';
 		$priceStr = '';
 		$roomStr = '';
 		$strArr = [];
+		
+		$subwayList = Subway::find()->asArray()->all();
+		$subwayIndexes = [];
+		foreach($subwayList as $item) :
+			array_push($subwayIndexes, $item['SubwayIndex']);
+		endforeach;
+		
+		if(in_array($subway, $subwayIndexes)) :
+			$this->subway = $subway;
+			$str = 'FlatSubway = ' . $subway;
+			array_push($strArr, $str);
+		endif;
+		
 		
 		if(in_array((int)$roomNumber, $this->rooms)) {
 			$this->roomNumber = (int)$roomNumber;
@@ -105,11 +121,13 @@ class VtorichnoeProdazhaController extends Controller
 		$flatList = $connection->createCommand($sql)->queryAll();
 		
 		return $this->render('index', [
-			'flatList' => $flatList,
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway
 		]);
 	}
 
@@ -121,15 +139,57 @@ class VtorichnoeProdazhaController extends Controller
 		$roomStr = '';
 		$strArr = [];
 		
+		$subwayList = Subway::find()->asArray()->all();
+		
 		$connection = Yii::$app->db;
 		$flatList = $connection->createCommand($sql)->queryAll();
 		
-		return $this->render('index', [
-			'flatList' => $flatList,
+		return $this->render('komnaty', [
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway
+		]);
+	}
+	
+	public function actionKvartirymoskva() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatCity = "МОСКВА"';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('kvartirymoskva', [
+			'itemList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway
+		]);
+	}
+	
+	public function actionKvartirypodmoskovie() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND NOT FlatCity = "МОСКВА"';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		
+		$flatList = $this->getFlatList($sql);
+		
+		return $this->render('kvartirypodmoskovie', [
+			'itemList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway
 		]);
 	}
 	
@@ -137,14 +197,18 @@ class VtorichnoeProdazhaController extends Controller
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 1 AND FlatCity = "МОСКВА"';
 		
+		$subwayList = Subway::find()->asArray()->all();
+		
 		$flatList = $this->getFlatList($sql);
 		
-		return $this->render('index', [
-			'flatList' => $flatList,
+		return $this->render('odnakomnatamoskva', [
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway
 		]);
 	}
 	
@@ -152,14 +216,18 @@ class VtorichnoeProdazhaController extends Controller
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 2 AND FlatCity = "МОСКВА"';
 		
+		$subwayList = Subway::find()->asArray()->all();
+		
 		$flatList = $this->getFlatList($sql);
 		
-		return $this->render('index', [
-			'flatList' => $flatList,
+		return $this->render('dvekomnatymoskva', [
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway
 		]);
 	}
 	
@@ -167,14 +235,18 @@ class VtorichnoeProdazhaController extends Controller
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 3 AND FlatCity = "МОСКВА"';
 		
+		$subwayList = Subway::find()->asArray()->all();
+		
 		$flatList = $this->getFlatList($sql);
 		
 		return $this->render('index', [
-			'flatList' => $flatList,
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway
 		]);
 	}
 	
@@ -182,14 +254,18 @@ class VtorichnoeProdazhaController extends Controller
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber >= 4 AND FlatCity = "МОСКВА"';
 		
+		$subwayList = Subway::find()->asArray()->all();
+		
 		$flatList = $this->getFlatList($sql);
 		
 		return $this->render('index', [
-			'flatList' => $flatList,
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway
 		]);
 	}
 
