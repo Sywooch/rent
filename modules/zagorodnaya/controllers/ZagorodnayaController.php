@@ -34,32 +34,107 @@ class ZagorodnayaController extends Controller
 			'destinationTitle' => 'Алтуфьевское шоссе'
 		],
 		'2' => [
-			'destinationTitle' => 'Алтуфьевское шоссе'
+			'destinationTitle' => 'Боровское шоссе'
 		],
 		'3' => [
-			'destinationTitle' => 'Алтуфьевское шоссе'
+			'destinationTitle' => 'Варшавское шоссе'
 		],
 		'4' => [
-			'destinationTitle' => 'Алтуфьевское шоссе'
+			'destinationTitle' => 'Волоколамское шоссе'
 		],
 		'5' => [
-			'destinationTitle' => 'Алтуфьевское шоссе'
+			'destinationTitle' => 'Горьковское шоссе'
 		],
 		'6' => [
-			'destinationTitle' => 'Алтуфьевское шоссе'
+			'destinationTitle' => 'Дмитровское шоссе'
 		],
 		'7' => [
-			'destinationTitle' => 'Алтуфьевское шоссе'
+			'destinationTitle' => 'Егорьевское шоссе'
 		],
 		'8' => [
-			'destinationTitle' => 'Алтуфьевское шоссе'
+			'destinationTitle' => 'Звенигородское шоссе'
 		],
 		'9' => [
-			'destinationTitle' => 'Алтуфьевское шоссе'
+			'destinationTitle' => 'Калужское шоссе'
 		],
 		'10' => [
-			'destinationTitle' => 'Алтуфьевское шоссе'
+			'destinationTitle' => 'Каширское шоссе'
 		],
+		'11' => [
+			'destinationTitle' => 'Киевское шоссе'
+		],
+		'12' => [
+			'destinationTitle' => 'Коровинское шоссе'
+		],
+		'13' => [
+			'destinationTitle' => 'Куркинское шоссе'
+		],
+		'14' => [
+			'destinationTitle' => 'Ленинградское шоссе'
+		],
+		'15' => [
+			'destinationTitle' => 'Минское шоссе'
+		],
+		'16' => [
+			'destinationTitle' => 'Можайское шоссе'
+		],
+		'17' => [
+			'destinationTitle' => 'Нижегородское шоссе'
+		],
+		'18' => [
+			'destinationTitle' => 'Новокаширское шоссе'
+		],
+		'19' => [
+			'destinationTitle' => 'Новорижское шоссе'
+		],
+		'20' => [
+			'destinationTitle' => 'Новорязанское шоссе'
+		],
+		'21' => [
+			'destinationTitle' => 'Носовихинское шоссе'
+		],
+		'22' => [
+			'destinationTitle' => 'Осташковское шоссе'
+		],
+		'23' => [
+			'destinationTitle' => 'Очаковское шоссе'
+		],
+		'24' => [
+			'destinationTitle' => 'Перовское шоссе'
+		],
+		'25' => [
+			'destinationTitle' => 'Путилковское шоссе'
+		],
+		'26' => [
+			'destinationTitle' => 'Пятницкое шоссе'
+		],
+		'27' => [
+			'destinationTitle' => 'Рогачёвское шоссе'
+		],
+		'28' => [
+			'destinationTitle' => 'Рублёво-Успенское шоссе'
+		],
+		'29' => [
+			'destinationTitle' => 'Рублёвское шоссе'
+		],
+		'30' => [
+			'destinationTitle' => 'Рязанское шоссе'
+		],
+		'31' => [
+			'destinationTitle' => 'Симферопольское шоссе'
+		],
+		'32' => [
+			'destinationTitle' => 'Сколковское шоссе'
+		],
+		'33' => [
+			'destinationTitle' => 'Щёлковское шоссе'
+		],
+		'34' => [
+			'destinationTitle' => 'Ярославльское шоссе'
+		],
+		
+		
+		
 	];
 	
 	public function getFilterString($min, $max, $field, $type) {
@@ -122,7 +197,7 @@ class ZagorodnayaController extends Controller
 		$flatList = $connection->createCommand($sql)->queryAll();
 		
 		return $this->render('index', [
-			'flatList' => $flatList,
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'areaMin' => $this->areaMin,
 			'areaMax' => $this->areaMax,
@@ -132,7 +207,8 @@ class ZagorodnayaController extends Controller
 			'priceMax' => $this->priceMax,
 			'distanceMin' => $this->distanceMin,
 			'distanceMax' => $this->distanceMax,
-			'direction' => $this->direction
+			'direction' => $this->direction,
+			'directions' => $this->destinations
 		]);
 	}
 
@@ -170,7 +246,7 @@ class ZagorodnayaController extends Controller
 		$flatList = $connection->createCommand($sql)->queryAll();
 		
 		return $this->render('uchastki', [
-			'flatList' => $flatList,
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'areaMin' => $this->areaMin,
 			'areaMax' => $this->areaMax,
@@ -180,7 +256,8 @@ class ZagorodnayaController extends Controller
 			'priceMax' => $this->priceMax,
 			'distanceMin' => $this->distanceMin,
 			'distanceMax' => $this->distanceMax,
-			'direction' => $this->direction
+			'direction' => $this->direction,
+			'directions' => $this->destinations
 		]);
 	}
 
@@ -221,8 +298,8 @@ class ZagorodnayaController extends Controller
 		$connection = Yii::$app->db;
 		$flatList = $connection->createCommand($sql)->queryAll();
 		
-		return $this->render('index', [
-			'flatList' => $flatList,
+		return $this->render('arenda', [
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'areaMin' => $this->areaMin,
 			'areaMax' => $this->areaMax,
@@ -232,7 +309,8 @@ class ZagorodnayaController extends Controller
 			'priceMax' => $this->priceMax,
 			'distanceMin' => $this->distanceMin,
 			'distanceMax' => $this->distanceMax,
-			'direction' => $this->direction
+			'direction' => $this->direction,
+			'directions' => $this->destinations
 		]);
 	}
 	

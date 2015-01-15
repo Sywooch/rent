@@ -64,7 +64,7 @@ $this->title = 'Аренда квартир - Коммерческая';
 		</form>
 	</div>
 </div>
-<h2>Продажа коммерческой недвижимости</h2>
+<h3>Продажа офисов</h3>
 <div class="flat-list">
 	<?php foreach($itemList as $item) : ?>
 	<div class="flat-item">

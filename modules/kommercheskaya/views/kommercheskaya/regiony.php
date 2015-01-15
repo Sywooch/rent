@@ -9,8 +9,8 @@ $this->title = 'Аренда квартир - Коммерческая';
 	<ul>
 		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'index'){echo 'class="active"';} ?>><a href="/kommercheskaya">Все обьекты</a></li>
 		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'ofisy'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/ofisy">Офисы</a></li>
-		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'osobnyaki'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/osobniaki">Особняки</a></li>
-		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'torgovoye'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/torgovaya">Торговая недвижимость</a></li>
+		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'osobniaki'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/osobniaki">Особняки</a></li>
+		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'torgovaya'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/torgovaya">Торговая недвижимость</a></li>
 		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'biznes'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/biznes">Арендный бизнес</a></li>
 		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'podmoskovie'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/podmoskovie">Недвижимость в Подмосковье</a></li>
 		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'sklady'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/sklady">Склады</a></li>
@@ -21,27 +21,6 @@ $this->title = 'Аренда квартир - Коммерческая';
 	
 	<div class="filter-section" id="novostroyki">
 		<form action="" method="get">
-		<div class="filter-group room-number-filter">
-			<h5>Класс обьекта:</h5>
-			<ul>
-				<li>
-					<input <?php if($class1){echo 'checked=""';} ?> type="checkbox" name="class1" value="1" id="room-number-1" />
-					<label for="room-number-1">A</label>
-				</li>
-				<li>
-					<input <?php if($class2){echo 'checked=""';} ?> type="checkbox" name="class2" value="2" id="room-number-2" />
-					<label for="room-number-2">B</label>
-				</li>
-				<li>
-					<input <?php if($class3){echo 'checked=""';} ?> type="checkbox" name="class3" value="3" id="room-number-3" />
-					<label for="room-number-3">B+</label>
-				</li>
-				<li>
-					<input <?php if($class4){echo 'checked=""';} ?> type="checkbox" name="class4" value="4" id="room-number-3" />
-					<label for="room-number-4">C</label>
-				</li>
-			</ul>
-		</div>
 		<div class="filter-group area-filter">
 			<h5>Площадь (м²):</h5>
 			<div class="input-wrap">
@@ -64,7 +43,7 @@ $this->title = 'Аренда квартир - Коммерческая';
 		</form>
 	</div>
 </div>
-<h2>Продажа коммерческой недвижимости</h2>
+<h3>Продажа коммерческой недвижимости в регионах</h3>
 <div class="flat-list">
 	<?php foreach($itemList as $item) : ?>
 	<div class="flat-item">

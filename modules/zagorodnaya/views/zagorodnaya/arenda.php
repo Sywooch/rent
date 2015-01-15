@@ -77,7 +77,7 @@ $this->title = 'Аренда квартир - Загородная';
 			</div>
 		</div>
 		<div class="filter-group left-75">
-			<h5>Цена (тыс. руб):</h5>
+			<h5>Цена (руб/месяц):</h5>
 			<div class="input-wrap">
 				<input class="input-short input-50" type="text" name="priceMin" value="<?php if($priceMin){echo $priceMin;}  ?>" />
 				<span>—</span>
@@ -90,7 +90,7 @@ $this->title = 'Аренда квартир - Загородная';
 		</form>
 	</div>
 </div>
-<h3>Продажа загородных домов</h3>
+<h3>Аренда загородных домов</h3>
 <div class="flat-list">
 	<?php foreach($itemList as $item) : ?>
 	<div class="flat-item">
@@ -129,7 +129,7 @@ $this->title = 'Аренда квартир - Загородная';
 				</p>
 				<p>
 					<span class="title">Цена:</span>
-					<span><?php echo (int)$item['HousePrice'] . ' тыс. руб'; ?></span>
+					<span><?php echo (int)$item['HousePrice'] . ' руб/месяц'; ?></span>
 				</p>
 				
 			</div>

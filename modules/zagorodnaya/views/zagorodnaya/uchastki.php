@@ -83,16 +83,44 @@ $this->title = 'Аренда квартир - Загородная';
 		</form>
 	</div>
 </div>
+<h3>Продажа участков</h3>
 <div class="flat-list">
-	<?php foreach($flatList as $flat) : ?>
+	<?php foreach($itemList as $item) : ?>
 	<div class="flat-item">
 		<div class="flat-item-inner">
 			<img src="/assets/jpg/house.jpg" />
 			<div class="flat-item-info">
 				<p>
-					<span>Направление</span>
-					<span><?php echo $flat['HouseDirectionId']; ?></span>
+					<span class="title">Тип обьекта</span>
+					<span><?php
+					 $low = mb_convert_case($item['HouseType'], MB_CASE_LOWER, 'UTF-8');
+					 echo mb_convert_case($low, MB_CASE_TITLE, 'UTF-8');
+					 ?></span>
 				</p>
+				<p>
+					<span class="title">Тип обьявления</span>
+					<span><?php
+					 $low = mb_convert_case($item['HouseAction'], MB_CASE_LOWER, 'UTF-8');
+					 echo mb_convert_case($low, MB_CASE_TITLE, 'UTF-8');
+					 ?></span>
+				</p>
+				<p>
+					<span class="title">Направление:</span>
+					<span><?php echo $directions[$item['HouseDirectionId']]['destinationTitle']; ?></span>
+				</p>
+				<p>
+					<span class="title">От МКАД:</span>
+					<span><?php echo $item['HouseDistance'] . ' км'; ?></span>
+				</p>
+				<p>
+					<span class="title">Плошадь:</span>
+					<span><?php echo $item['HousePlotArea'] . ' соток'; ?></span>
+				</p>
+				<p>
+					<span class="title">Цена:</span>
+					<span><?php echo (int)$item['HousePrice'] . ' тыс. руб'; ?></span>
+				</p>
+				
 			</div>
 		</div>
 	</div>

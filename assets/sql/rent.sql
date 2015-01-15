@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2015 at 05:11 PM
+-- Generation Time: Jan 15, 2015 at 02:10 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,41 @@ SET time_zone = "+00:00";
 --
 -- Database: `rent`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `commerce`
+--
+
+CREATE TABLE IF NOT EXISTS `commerce` (
+  `CommerceId` int(50) NOT NULL AUTO_INCREMENT,
+  `CommerceType` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CommerceAction` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CommerceCity` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CommerceRegionId` int(255) NOT NULL,
+  `CommerceClass` int(50) NOT NULL,
+  `CommerceArea` int(50) NOT NULL,
+  `CommerceSubway` int(50) NOT NULL,
+  `CommercePrice` int(50) NOT NULL,
+  PRIMARY KEY (`CommerceId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `commerce`
+--
+
+INSERT INTO `commerce` (`CommerceId`, `CommerceType`, `CommerceAction`, `CommerceCity`, `CommerceRegionId`, `CommerceClass`, `CommerceArea`, `CommerceSubway`, `CommercePrice`) VALUES
+(1, 'ОФИС', 'ПРОДАЖА', 'МОСКВА', 1, 2, 1204, 1, 82),
+(2, 'ОФИС', 'ПРОДАЖА', 'МОСКВА', 1, 1, 167, 3, 115),
+(3, 'ОСОБНЯК', 'ПРОДАЖА', 'ХИМКИ', 2, 0, 3953, 5, 249),
+(4, 'ОСОБНЯК', 'ПРОДАЖА', 'ВОРОНЕЖ', 3, 0, 680, 6, 320),
+(5, 'ТОРГОВОЕ', 'ПРОДАЖА', 'ТВЕРЬ', 4, 0, 4500, 0, 35),
+(6, 'ТОРГОВОЕ', 'ПРОДАЖА', 'МОСКВА', 1, 0, 222, 0, 70),
+(7, 'БИЗНЕС', 'ПРОДАЖА', 'ЗЕЛЕНОГРАД', 2, 0, 288, 0, 103),
+(8, 'БИЗНЕС', 'ПРОДАЖА', 'МОСКВА', 1, 0, 737, 0, 283),
+(9, 'СКЛАД', 'ПРОДАЖА', 'МОСКВА', 1, 0, 1270, 0, 50),
+(10, 'СКЛАД', 'ПРОДАЖА', 'ТВЕРЬ', 4, 0, 3260, 0, 69);
 
 -- --------------------------------------------------------
 

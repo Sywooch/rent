@@ -71,6 +71,7 @@ $config = [
     			'vtorichnoe/prodazha/trehkomnatnye-kvartiry-podmoskovie' => 'vtorichnoe/vtorichnoe/trehkomnatnyekvartirypodmoskovie',
     			'vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-podmoskovie' => 'vtorichnoe/vtorichnoe/chetyrehkomnatnyekvartirypodmoskovie',
     			'vtorichnoe/prodazha/<action>' => 'vtorichnoe/vtorichnoe/<action>',
+    			'kommercheskaya/prodazha/<action>' => 'kommercheskaya/kommercheskaya/<action>',
     			'zagorodnaya/<action>' => 'zagorodnaya/zagorodnaya/<action>'
     		]
 		],

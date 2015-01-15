@@ -271,6 +271,17 @@ a.desc:after {
 	cursor: pointer;
 }
 
+.filter-group ul li input[type="checkbox"] {
+	opacity: 0;
+	position: absolute;
+	cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label {
+  color: #FFF;
+  background: #960C2D;
+}
+
 .room-number-filter ul li label {
 	background: #FFF;
 	color: #000;
@@ -421,12 +432,11 @@ input[type="radio"]:checked + label {
 
 .flat-item {
 	display: inline-block;
+	vertical-align: top;
 	width: 50%;
 	height: 165px;
 	font-size: 13px;
-	/*border: 1px solid #CCC;*/
 	box-sizing: border-box;
-	
 }
 
 .flat-item-inner {
@@ -434,7 +444,34 @@ input[type="radio"]:checked + label {
 	height: 150px;
 	background: #FFF;
 	border-radius: 4px;
-	
+	position: relative;
+}
+
+.flat-item-inner img {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	border-radius: 4px;
+}
+
+.flat-item-info {
+	padding-left: 200px;
+	padding-top: 10px;
+	font-size: 13px;
+}
+
+.flat-item-info p {
+	font-size: 13px;
+}
+
+.flat-item-info p span {
+	font-size: inherit;
+}
+
+span.title {
+	font-weight: bold;
+	display: inline-block;
+	width: 120px;
 }
 
 .flat-item:nth-of-type(even) .flat-item-inner {
