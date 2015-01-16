@@ -51,7 +51,7 @@ $this->title = 'Аренда квартир - Коммерческая';
 			</div>
 		</div>
 		<div class="filter-group price-filter">
-			<h5>Цена (тыс. руб/м²):</h5>
+			<h5>Цена (руб/м²):</h5>
 			<div class="input-wrap">
 				<input class="input-short" type="text" name="priceMin" value="<?php if($priceMin){echo $priceMin;}  ?>" />
 				<span>—</span>
@@ -108,7 +108,7 @@ $this->title = 'Аренда квартир - Коммерческая';
 				</p>
 				<p>
 					<span class="title">Цена:</span>
-					<span><?php echo (int)$item['CommercePrice']*1000 . ' руб/м²'; ?></span>
+					<span><?php echo (int)$item['CommercePrice'] . ' руб/м²'; ?></span>
 				</p>
 				
 			</div>

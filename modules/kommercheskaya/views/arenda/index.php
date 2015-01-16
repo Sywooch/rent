@@ -11,10 +11,10 @@ $this->title = 'Аренда квартир - Аренда коммерческ�
 		<li <?php if(Yii::$app->controller->id == 'arenda' && Yii::$app->controller->action->id == 'ofisy'){echo 'class="active"';} ?>><a href="/kommercheskaya/arenda/ofisy">Офисы</a></li>
 		<li <?php if(Yii::$app->controller->id == 'arenda' && Yii::$app->controller->action->id == 'osobnyaki'){echo 'class="active"';} ?>><a href="/kommercheskaya/arenda/osobniaki">Особняки</a></li>
 		<li <?php if(Yii::$app->controller->id == 'arenda' && Yii::$app->controller->action->id == 'torgovoye'){echo 'class="active"';} ?>><a href="/kommercheskaya/arenda/torgovaya">Торговая недвижимость</a></li>
-		<li <?php if(Yii::$app->controller->id == 'arenda' && Yii::$app->controller->action->id == 'biznes'){echo 'class="active"';} ?>><a href="/kommercheskaya/arenda/biznes">Арендный бизнес</a></li>
+		
 		<li <?php if(Yii::$app->controller->id == 'arenda' && Yii::$app->controller->action->id == 'podmoskovie'){echo 'class="active"';} ?>><a href="/kommercheskaya/arenda/podmoskovie">Недвижимость в Подмосковье</a></li>
-		<li <?php if(Yii::$app->controller->id == 'arenda' && Yii::$app->controller->action->id == 'sklady'){echo 'class="active"';} ?>><a href="/kommercheskaya/arenda/sklady">Склады</a></li>
-		<li <?php if(Yii::$app->controller->id == 'arenda' && Yii::$app->controller->action->id == 'regiony'){echo 'class="active"';} ?>><a href="/kommercheskaya/arenda/regiony">Регионы</a></li>
+		
+		
 	</ul>
 </div>
 <div class="filter-wrap">
@@ -51,7 +51,7 @@ $this->title = 'Аренда квартир - Аренда коммерческ�
 			</div>
 		</div>
 		<div class="filter-group price-filter">
-			<h5>Цена (тыс. руб/м² за год):</h5>
+			<h5>Цена (руб/м² за год):</h5>
 			<div class="input-wrap">
 				<input class="input-short" type="text" name="priceMin" value="<?php if($priceMin){echo $priceMin;}  ?>" />
 				<span>—</span>
@@ -108,7 +108,7 @@ $this->title = 'Аренда квартир - Аренда коммерческ�
 				</p>
 				<p>
 					<span class="title">Цена:</span>
-					<span><?php echo (int)$item['CommercePrice']*1000 . ' руб/м за год²'; ?></span>
+					<span><?php echo (int)$item['CommercePrice'] . ' руб/м² за год'; ?></span>
 				</p>
 				
 			</div>

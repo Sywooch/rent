@@ -200,8 +200,16 @@ a.desc:after {
 	top: 0;
 }
 
+.left-5 {
+	left: 5%;
+}
+
 .left-25 {
 	left: 25%;
+}
+
+.left-50 {
+	left: 42%;
 }
 
 
@@ -357,6 +365,11 @@ input[type="radio"]:checked + label {
 	margin: 0 15px;
 }
 
+.select-item {
+	width: 200px;
+	display: block;
+}
+
 
 
 .location-list li {
@@ -440,14 +453,14 @@ input[type="radio"]:checked + label {
 	display: inline-block;
 	vertical-align: top;
 	width: 50%;
-	height: 195px;
+	height: 245px;
 	font-size: 13px;
 	box-sizing: border-box;
 }
 
 .flat-item-inner {
 	/*border: 1px solid red;*/
-	height: 180px;
+	height: 230px;
 	background: #FFF;
 	border-radius: 4px;
 	position: relative;

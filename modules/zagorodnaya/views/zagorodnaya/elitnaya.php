@@ -10,7 +10,7 @@ $this->title = 'Аренда квартир - Загородная';
 </div>
 <div class="filter-wrap">
 	<div class="filter-section" id="novostroyki">
-		<form action="" method="get">
+		<form action="/zagorodnaya" method="get">
 			<div class="fast-search-wrap">
 			<ul class="fast-filter-list">
 				<li>
@@ -24,7 +24,7 @@ $this->title = 'Аренда квартир - Загородная';
 					<a href="/zagorodnaya/middle">Средний класс</a>
 					
 				</li>
-				<li>
+				<li class="active">
 					<a href="/zagorodnaya/elitnaya">Элитная</a>
 				</li>
 			</ul>

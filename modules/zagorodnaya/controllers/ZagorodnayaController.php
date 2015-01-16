@@ -212,6 +212,75 @@ class ZagorodnayaController extends Controller
 		]);
 	}
 
+	public function actionEkonom() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM house WHERE HousePrice <= 700';
+		
+		$connection = Yii::$app->db;
+		$flatList = $connection->createCommand($sql)->queryAll();
+		
+		return $this->render('ekonom', [
+			'itemList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'areaMin' => $this->areaMin,
+			'areaMax' => $this->areaMax,
+			'plotareaMin' => $this->plotareaMin,
+			'plotareaMax' => $this->plotareaMax,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+			'distanceMin' => $this->distanceMin,
+			'distanceMax' => $this->distanceMax,
+			'direction' => $this->direction,
+			'directions' => $this->destinations
+		]);
+	}
+	
+	public function actionMiddle() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM house WHERE HousePrice BETWEEN 700 AND 25000';
+		
+		$connection = Yii::$app->db;
+		$flatList = $connection->createCommand($sql)->queryAll();
+		
+		return $this->render('middle', [
+			'itemList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'areaMin' => $this->areaMin,
+			'areaMax' => $this->areaMax,
+			'plotareaMin' => $this->plotareaMin,
+			'plotareaMax' => $this->plotareaMax,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+			'distanceMin' => $this->distanceMin,
+			'distanceMax' => $this->distanceMax,
+			'direction' => $this->direction,
+			'directions' => $this->destinations
+		]);
+	}
+	
+	public function actionElitnaya() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM house WHERE HousePrice >= 25000';
+		
+		$connection = Yii::$app->db;
+		$flatList = $connection->createCommand($sql)->queryAll();
+		
+		return $this->render('elitnaya', [
+			'itemList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'areaMin' => $this->areaMin,
+			'areaMax' => $this->areaMax,
+			'plotareaMin' => $this->plotareaMin,
+			'plotareaMax' => $this->plotareaMax,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+			'distanceMin' => $this->distanceMin,
+			'distanceMax' => $this->distanceMax,
+			'direction' => $this->direction,
+			'directions' => $this->destinations
+		]);
+	}
+
 	public function actionUchastki($direction = null, $distanceMin = null, $distanceMax = null, $plotareaMin = null, $plotareaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM house WHERE HouseAction = "ПРОДАЖА" AND HouseType = "УЧАСТОК"';

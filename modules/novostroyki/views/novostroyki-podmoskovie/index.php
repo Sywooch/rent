@@ -27,12 +27,16 @@ $this->title = 'Аренда квартир - Новостройки Подмо�
 					<label for="room-number-3">3</label>
 				</li>
 				<li>
+					<input <?php if($roomNumber >= 4){echo 'checked=""';} ?> type="radio" name="roomNumber" value="4" id="room-number-4" />
+					<label for="room-number-4">4+</label>
+				</li>
+				<li>
 					<input <?php if(!$roomNumber){echo 'checked=""';} ?> type="radio" name="roomNumber" value="" id="room-number-anyone" />
 					<label for="room-number-anyone">Не важно</label>
 				</li>
 			</ul>
 		</div>
-		<div class="filter-group area-filter">
+		<div class="filter-group left-25">
 			<h5>Площадь (м²):</h5>
 			<div class="input-wrap">
 				<input class="input-short" type="text" name="areaMin" value="<?php echo $areaMin; ?>" />
@@ -40,7 +44,7 @@ $this->title = 'Аренда квартир - Новостройки Подмо�
 				<input class="input-short" type="text" name="areaMax" value="<?php echo $areaMax; ?>" />
 			</div>
 		</div>
-		<div class="filter-group price-filter">
+		<div class="filter-group left-50">
 			<h5>Цена (тыс. руб/м²):</h5>
 			<div class="input-wrap">
 				<input class="input-short" type="text" name="priceMin" value="<?php if($priceMin){echo $priceMin/1000;}  ?>" />

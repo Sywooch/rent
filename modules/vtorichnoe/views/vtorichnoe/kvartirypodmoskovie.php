@@ -11,7 +11,7 @@ $this->title = 'Аренда квартир - Продажа квартир в �
 <div class="filter-wrap">
 	<div class="filter-section" id="novostroyki">
 		<form action="/vtorichnoe" method="get">
-		<div class="fast-search-wrap">
+	<div class="fast-search-wrap">
 			<ul class="fast-filter-list">
 				<li>
 					<span>Быстрый поиск</span>
@@ -27,32 +27,15 @@ $this->title = 'Аренда квартир - Продажа квартир в �
 								<li class="num-item"><a href="/vtorichnoe/prodazha/trehkomnatnye-kvartiry-moskva">3</a></li>
 								<li class="num-item"><a href="/vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-moskva">4+</a></li>
 							</ul>
-							<p>По расположению</p>
-							<ul class="location-list">
-								<li><a>по метро</a></li>
-								<li><a>по районам</a></li>
-								<li><a>по улице</a></li>
-								<li><a>по округам</a></li>
-							</ul>
+							
 						</li>
 						
 					</ul>
 				</li>
 				<li>
-					<a>Квартиры в Подмосковье</a>
-					<ul>
-						<li>
-							<p>По числу комнат</p>
-							<ul>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/odnokomnatnye-kvartiry-podmoskovie">1</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/dvuhkomnatnye-kvartiry-podmoskovie">2</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/trehkomnatnye-kvartiry-podmoskovie">3</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-podmoskovie">4+</a></li>
-							</ul>
-						</li>
-					</ul>
+					<a href="/vtorichnoe/prodazha/kvartiry-podmoskovie">Квартиры в Подмосковье</a>
 				</li>
-				<li <?php if(Yii::$app->controller->id == 'vtorichnoe' && Yii::$app->controller->action->id == 'komnaty'){echo 'class="active"';} ?>>
+				<li>
 					<a href="/vtorichnoe/prodazha/komnaty">Комнаты</a>
 				</li>
 			</ul>

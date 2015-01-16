@@ -28,6 +28,9 @@ class NovostroykiMoskvaController extends Controller
 		if(in_array($roomNumber, $this->rooms)) :
 			$this->roomNumber = $roomNumber;
 			$roomStr = 'FlatRoomNumber = ' . $roomNumber;
+			if($roomNumber >= 4) :
+				$roomStr = 'FlatRoomNumber >= ' . $roomNumber;
+			endif;
 			array_push($strArr, $roomStr);
 		endif;
 		

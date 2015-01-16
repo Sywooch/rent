@@ -27,37 +27,19 @@ $this->title = 'Аренда квартир - Вторичное Комнаты'
 								<li class="num-item"><a href="/vtorichnoe/prodazha/trehkomnatnye-kvartiry-moskva">3</a></li>
 								<li class="num-item"><a href="/vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-moskva">4+</a></li>
 							</ul>
-							<p>По расположению</p>
-							<ul class="location-list">
-								<li><a>по метро</a></li>
-								<li><a>по районам</a></li>
-								<li><a>по улице</a></li>
-								<li><a>по округам</a></li>
-							</ul>
+							
 						</li>
 						
 					</ul>
 				</li>
 				<li>
-					<a>Квартиры в Подмосковье</a>
-					<ul>
-						<li>
-							<p>По числу комнат</p>
-							<ul>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/odnokomnatnye-kvartiry-podmoskovie">1</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/dvuhkomnatnye-kvartiry-podmoskovie">2</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/trehkomnatnye-kvartiry-podmoskovie">3</a></li>
-								<li class="num-item"><a href="/vtorichnoe/prodazha/chetyrehkomnatnye-kvartiry-podmoskovie">4+</a></li>
-							</ul>
-						</li>
-					</ul>
+					<a href="/vtorichnoe/prodazha/kvartiry-podmoskovie">Квартиры в Подмосковье</a>
 				</li>
-				<li <?php if(Yii::$app->controller->id == 'vtorichnoe' && Yii::$app->controller->action->id == 'komnaty'){echo 'class="active"';} ?>>
+				<li>
 					<a href="/vtorichnoe/prodazha/komnaty">Комнаты</a>
 				</li>
 			</ul>
 		</div>
-			
 		
 		<div class="filter-groups">
 			<div class="filter-group flat-type-filter">
@@ -98,15 +80,50 @@ $this->title = 'Аренда квартир - Вторичное Комнаты'
 				<option <?php if($subway == $subwayItem['SubwayIndex']){echo 'selected';} ?> value="<?php echo $subwayItem['SubwayIndex']; ?>"><?php echo $subwayItem['SubwayTitle']; ?></option>
 				<?php endforeach; ?>
 			</select>
+			
+		</div>
+		
+		</div>
+		<div class="filter-groups">
+			<div class="filter-group left-5">
+			<h5>Район:</h5>
+			<select class="department-select" name="department">
+				<option <?php if(!$department){echo 'selected';} ?> value="">Выберите район</option>
+				<?php foreach($departmentList as $departmentItem) : ?>
+				<option <?php if($department == $departmentItem['DepartmentIndex']){echo 'selected';} ?> value="<?php echo $departmentItem['DepartmentIndex']; ?>"><?php echo $departmentItem['DepartmentTitle']; ?></option>
+				<?php endforeach; ?>
+			</select>
+			
+		</div>
+		<div class="filter-group left-25">
+			<h5>Район:</h5>
+			<select class="district-select" name="district">
+				<option <?php if(!$district){echo 'selected';} ?> value="">Выберите округ</option>
+				<?php foreach($districtList as $districtItem) : ?>
+				<option <?php if($district == $districtItem['DistrictIndex']){echo 'selected';} ?> value="<?php echo $districtItem['DistrictIndex']; ?>"><?php echo $districtItem['DistrictTitle']; ?></option>
+				<?php endforeach; ?>
+			</select>
+			
+		</div>
+		<div class="filter-group left-50">
+			<h5>Район:</h5>
+			<select class="street-select" name="street">
+				<option <?php if(!$street){echo 'selected';} ?> value="">Выберите улицу</option>
+				<?php foreach($streetList as $streetItem) : ?>
+				<option <?php if($street == $streetItem['StreetIndex']){echo 'selected';} ?> value="<?php echo $streetItem['StreetIndex']; ?>"><?php echo $streetItem['StreetTitle']; ?></option>
+				<?php endforeach; ?>
+			</select>
 			<script>
 				$(".chosen-select").chosen();
+				$(".department-select").chosen();
+				$(".district-select").chosen();
+				$(".street-select").chosen();
 			</script>
 		</div>
 		<div class="filter-navigation">
 			<input type="submit" value="Найти" />
 		</div>
 		</div>
-		
 		
 		</form>
 	</div>
@@ -159,6 +176,45 @@ $this->title = 'Аренда квартир - Вторичное Комнаты'
 						foreach($subwayList as $subway) :
 							if($item['FlatSubway'] == $subway['SubwayIndex']) :
 								echo $subway['SubwayTitle'];
+								continue;
+							endif;
+						endforeach;
+						?>
+					</span>
+				</p>
+				<p>
+					<span class="title">Район:</span>
+					<span>
+						<?php
+						foreach($departmentList as $department) :
+							if($item['FlatDepartment'] == $department['DepartmentIndex']) :
+								echo $department['DepartmentTitle'];
+								continue;
+							endif;
+						endforeach;
+						?>
+					</span>
+				</p>
+				<p>
+					<span class="title">Округ:</span>
+					<span>
+						<?php
+						foreach($districtList as $district) :
+							if($item['FlatDistrict'] == $district['DistrictIndex']) :
+								echo $district['DistrictTitle'];
+								continue;
+							endif;
+						endforeach;
+						?>
+					</span>
+				</p>
+				<p>
+					<span class="title">Улица:</span>
+					<span>
+						<?php
+						foreach($streetList as $street) :
+							if($item['FlatStreet'] == $street['StreetIndex']) :
+								echo $street['StreetTitle'];
 								continue;
 							endif;
 						endforeach;

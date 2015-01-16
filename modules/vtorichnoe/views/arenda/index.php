@@ -54,15 +54,50 @@ $this->title = 'Аренда квартир - Вторичное';
 				<option <?php if($subway == $subwayItem['SubwayIndex']){echo 'selected';} ?> value="<?php echo $subwayItem['SubwayIndex']; ?>"><?php echo $subwayItem['SubwayTitle']; ?></option>
 				<?php endforeach; ?>
 			</select>
+			
+		</div>
+		
+		</div>
+		<div class="filter-groups">
+			<div class="filter-group left-5">
+			<h5>Район:</h5>
+			<select class="department-select" name="department">
+				<option <?php if(!$department){echo 'selected';} ?> value="">Выберите район</option>
+				<?php foreach($departmentList as $departmentItem) : ?>
+				<option <?php if($department == $departmentItem['DepartmentIndex']){echo 'selected';} ?> value="<?php echo $departmentItem['DepartmentIndex']; ?>"><?php echo $departmentItem['DepartmentTitle']; ?></option>
+				<?php endforeach; ?>
+			</select>
+			
+		</div>
+		<div class="filter-group left-25">
+			<h5>Район:</h5>
+			<select class="district-select" name="district">
+				<option <?php if(!$district){echo 'selected';} ?> value="">Выберите округ</option>
+				<?php foreach($districtList as $districtItem) : ?>
+				<option <?php if($district == $districtItem['DistrictIndex']){echo 'selected';} ?> value="<?php echo $districtItem['DistrictIndex']; ?>"><?php echo $districtItem['DistrictTitle']; ?></option>
+				<?php endforeach; ?>
+			</select>
+			
+		</div>
+		<div class="filter-group left-50">
+			<h5>Район:</h5>
+			<select class="street-select" name="street">
+				<option <?php if(!$street){echo 'selected';} ?> value="">Выберите улицу</option>
+				<?php foreach($streetList as $streetItem) : ?>
+				<option <?php if($street == $streetItem['StreetIndex']){echo 'selected';} ?> value="<?php echo $streetItem['StreetIndex']; ?>"><?php echo $streetItem['StreetTitle']; ?></option>
+				<?php endforeach; ?>
+			</select>
 			<script>
 				$(".chosen-select").chosen();
+				$(".department-select").chosen();
+				$(".district-select").chosen();
+				$(".street-select").chosen();
 			</script>
 		</div>
 		<div class="filter-navigation">
 			<input type="submit" value="Найти" />
 		</div>
 		</div>
-		
 		
 		</form>
 	</div>
@@ -115,6 +150,45 @@ $this->title = 'Аренда квартир - Вторичное';
 						foreach($subwayList as $subway) :
 							if($item['FlatSubway'] == $subway['SubwayIndex']) :
 								echo $subway['SubwayTitle'];
+								continue;
+							endif;
+						endforeach;
+						?>
+					</span>
+				</p>
+				<p>
+					<span class="title">Район:</span>
+					<span>
+						<?php
+						foreach($departmentList as $department) :
+							if($item['FlatDepartment'] == $department['DepartmentIndex']) :
+								echo $department['DepartmentTitle'];
+								continue;
+							endif;
+						endforeach;
+						?>
+					</span>
+				</p>
+				<p>
+					<span class="title">Округ:</span>
+					<span>
+						<?php
+						foreach($districtList as $district) :
+							if($item['FlatDistrict'] == $district['DistrictIndex']) :
+								echo $district['DistrictTitle'];
+								continue;
+							endif;
+						endforeach;
+						?>
+					</span>
+				</p>
+				<p>
+					<span class="title">Улица:</span>
+					<span>
+						<?php
+						foreach($streetList as $street) :
+							if($item['FlatStreet'] == $street['StreetIndex']) :
+								echo $street['StreetTitle'];
 								continue;
 							endif;
 						endforeach;

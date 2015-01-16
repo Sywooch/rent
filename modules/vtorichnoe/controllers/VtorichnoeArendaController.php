@@ -5,6 +5,9 @@ use yii\web\Controller;
 use Yii;
 use app\models\Flat;
 use app\models\Subway;
+use app\models\Department;
+use app\models\District;
+use app\models\Street;
 
 class VtorichnoeArendaController extends Controller
 {
@@ -20,6 +23,12 @@ class VtorichnoeArendaController extends Controller
 	public $flatType = null;
 	
 	public $subway = null;
+	
+	public $department = null;
+	
+	public $district = null;
+	
+	public $street = null;
 	
 	public $flatTypes = [
 		'fm' => [
@@ -48,7 +57,7 @@ class VtorichnoeArendaController extends Controller
 		]
 	];
 	
-	public function actionIndex($subway = null, $roomNumber = null, $flatType = null, $priceMin = null, $priceMax = null) {
+	public function actionIndex($street = null, $district = null, $department = null, $subway = null, $roomNumber = null, $flatType = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "АРЕНДА"';
 		$typeStr = '';
@@ -65,6 +74,42 @@ class VtorichnoeArendaController extends Controller
 		if(in_array($subway, $subwayIndexes)) :
 			$this->subway = $subway;
 			$str = 'FlatSubway = ' . $subway;
+			array_push($strArr, $str);
+		endif;
+		
+		$departmentList = Department::find()->asArray()->all();
+		$departmentIndexes = [];
+		foreach($departmentList as $item) :
+			array_push($departmentIndexes, $item['DepartmentIndex']);
+		endforeach;
+		
+		if(in_array($department, $departmentIndexes)) :
+			$this->department = $department;
+			$str = 'FlatDepartment = ' . $department;
+			array_push($strArr, $str);
+		endif;
+		
+		$districtList = District::find()->asArray()->all();
+		$districtIndexes = [];
+		foreach($districtList as $item) :
+			array_push($districtIndexes, $item['DistrictIndex']);
+		endforeach;
+		
+		if(in_array($district, $districtIndexes)) :
+			$this->district = $district;
+			$str = 'FlatDistrict = ' . $district;
+			array_push($strArr, $str);
+		endif;
+		
+		$streetList = Street::find()->asArray()->all();
+		$streetIndexes = [];
+		foreach($streetList as $item) :
+			array_push($streetIndexes, $item['StreetIndex']);
+		endforeach;
+		
+		if(in_array($street, $streetIndexes)) :
+			$this->street = $street;
+			$str = 'FlatStreet = ' . $street;
 			array_push($strArr, $str);
 		endif;
 		
@@ -127,7 +172,13 @@ class VtorichnoeArendaController extends Controller
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
 			'subwayList' => $subwayList,
-			'subway' => $this->subway
+			'subway' => $this->subway,
+			'departmentList' => $departmentList,
+			'department' => $this->department,
+			'districtList' => $districtList,
+			'district' => $this->district,
+			'streetList' => $streetList,
+			'street' => $this->street,
 		]);
 	}
 
