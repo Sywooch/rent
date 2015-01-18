@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2015 at 01:24 PM
+-- Generation Time: Jan 18, 2015 at 09:49 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -75,21 +75,23 @@ CREATE TABLE IF NOT EXISTS `department` (
   `DepartmentId` int(50) NOT NULL AUTO_INCREMENT,
   `DepartmentIndex` int(50) NOT NULL,
   `DepartmentTitle` varchar(255) COLLATE utf8_bin NOT NULL,
+  `DepartmentUrl` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`DepartmentId`),
-  UNIQUE KEY `DepartmentIndex` (`DepartmentIndex`)
+  UNIQUE KEY `DepartmentIndex` (`DepartmentIndex`),
+  UNIQUE KEY `DepartmentUrl` (`DepartmentUrl`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`DepartmentId`, `DepartmentIndex`, `DepartmentTitle`) VALUES
-(1, 1, 'Академический'),
-(2, 2, 'Алексеевский'),
-(3, 3, 'Алтуфьевский'),
-(4, 4, 'Арбат'),
-(5, 5, 'Аэропорт'),
-(6, 6, 'Бабушкинский');
+INSERT INTO `department` (`DepartmentId`, `DepartmentIndex`, `DepartmentTitle`, `DepartmentUrl`) VALUES
+(1, 1, 'Академический', 'akademicheskiy'),
+(2, 2, 'Алексеевский', 'alekseyevskiy'),
+(3, 3, 'Алтуфьевский', 'altufievskiy'),
+(4, 4, 'Арбат', 'arbat'),
+(5, 5, 'Аэропорт', 'aeroport'),
+(6, 6, 'Бабушкинский', 'babushkinskiy');
 
 -- --------------------------------------------------------
 
@@ -101,21 +103,23 @@ CREATE TABLE IF NOT EXISTS `district` (
   `DistrictId` int(50) NOT NULL AUTO_INCREMENT,
   `DistrictIndex` int(50) NOT NULL,
   `DistrictTitle` varchar(255) COLLATE utf8_bin NOT NULL,
+  `DistrictUrl` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`DistrictId`),
-  UNIQUE KEY `DistrictIndex` (`DistrictIndex`)
+  UNIQUE KEY `DistrictIndex` (`DistrictIndex`),
+  UNIQUE KEY `DistrictUrl` (`DistrictUrl`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `district`
 --
 
-INSERT INTO `district` (`DistrictId`, `DistrictIndex`, `DistrictTitle`) VALUES
-(1, 1, 'Центральный'),
-(2, 2, 'Северный'),
-(3, 3, 'Восточный'),
-(4, 4, 'Южный'),
-(5, 5, 'Западный'),
-(6, 6, 'Троицкий');
+INSERT INTO `district` (`DistrictId`, `DistrictIndex`, `DistrictTitle`, `DistrictUrl`) VALUES
+(1, 1, 'Центральный', 'centralnyi'),
+(2, 2, 'Северный', 'severnyi'),
+(3, 3, 'Восточный', 'vostochnyi'),
+(4, 4, 'Южный', 'yuzhnyi'),
+(5, 5, 'Западный', 'zapadnyi'),
+(6, 6, 'Троицкий', 'troitskiy');
 
 -- --------------------------------------------------------
 
@@ -257,21 +261,23 @@ CREATE TABLE IF NOT EXISTS `street` (
   `StreetId` int(50) NOT NULL AUTO_INCREMENT,
   `StreetIndex` int(50) NOT NULL,
   `StreetTitle` varchar(255) COLLATE utf8_bin NOT NULL,
+  `StreetUrl` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`StreetId`),
-  UNIQUE KEY `StreetIndex` (`StreetIndex`)
+  UNIQUE KEY `StreetIndex` (`StreetIndex`),
+  UNIQUE KEY `StreetUrl` (`StreetUrl`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `street`
 --
 
-INSERT INTO `street` (`StreetId`, `StreetIndex`, `StreetTitle`) VALUES
-(1, 1, 'Абельмановская Застава'),
-(2, 2, 'Абельмановская'),
-(3, 3, 'Абрамцевская просека'),
-(4, 4, 'Абрикосовский переулок'),
-(5, 5, 'Авангардная улица'),
-(6, 6, 'Авиаконструктора Микояна, улица');
+INSERT INTO `street` (`StreetId`, `StreetIndex`, `StreetTitle`, `StreetUrl`) VALUES
+(1, 1, 'Абельмановская Застава', 'abelmanovskaya-zastava'),
+(2, 2, 'Абельмановская', 'abelmanovskaya'),
+(3, 3, 'Абрамцевская просека', 'abramtsevskaya-proceka'),
+(4, 4, 'Абрикосовский переулок', 'abrokisovskiy-pereulok'),
+(5, 5, 'Авангардная', 'avangardnaya'),
+(6, 6, 'Авиаконструктора Микояна', 'aviakonstruktora-mikoyana');
 
 -- --------------------------------------------------------
 
@@ -283,27 +289,29 @@ CREATE TABLE IF NOT EXISTS `subway` (
   `SubwayId` int(50) NOT NULL AUTO_INCREMENT,
   `SubwayIndex` int(50) NOT NULL,
   `SubwayTitle` varchar(255) COLLATE utf8_bin NOT NULL,
+  `SubwayUrl` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`SubwayId`),
-  UNIQUE KEY `SubwayIndex` (`SubwayIndex`)
+  UNIQUE KEY `SubwayIndex` (`SubwayIndex`),
+  UNIQUE KEY `SubwayUrl` (`SubwayUrl`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `subway`
 --
 
-INSERT INTO `subway` (`SubwayId`, `SubwayIndex`, `SubwayTitle`) VALUES
-(1, 1, 'Авиамоторная'),
-(2, 2, 'Автозаводская'),
-(3, 3, 'Академическая'),
-(4, 4, 'Александровский сад'),
-(5, 5, 'Алексеевская'),
-(6, 6, 'Алма-Атинская'),
-(7, 7, 'Алтуфьево'),
-(8, 8, 'Аннино'),
-(9, 9, 'Арбатская'),
-(10, 10, 'Аэропорт'),
-(11, 11, 'Бабушкинская'),
-(12, 12, 'Багратионовская');
+INSERT INTO `subway` (`SubwayId`, `SubwayIndex`, `SubwayTitle`, `SubwayUrl`) VALUES
+(1, 1, 'Авиамоторная', 'aviamotornaya'),
+(2, 2, 'Автозаводская', 'avtozavodskaya'),
+(3, 3, 'Академическая', 'akademicheskaya'),
+(4, 4, 'Александровский сад', 'aleksandrovskiyi_sad'),
+(5, 5, 'Алексеевская', 'alekseyevskaya'),
+(6, 6, 'Алма-Атинская', 'alma_atinskaya'),
+(7, 7, 'Алтуфьево', 'altufievo'),
+(8, 8, 'Аннино', 'annino'),
+(9, 9, 'Арбатская', 'arbatskaya'),
+(10, 10, 'Аэропорт', 'aeroport'),
+(11, 11, 'Бабушкинская', 'babushkinskaya'),
+(12, 12, 'Багратионовская', 'bagrationovskaya');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

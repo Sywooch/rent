@@ -15,6 +15,8 @@ class VtorichnoeProdazhaController extends Controller
 	
 	public $rooms = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 	
+	public $itemList = null;
+	
 	public $roomNumber = null;
 	
 	public $priceMin = null;
@@ -183,13 +185,27 @@ class VtorichnoeProdazhaController extends Controller
 		]);
 	}
 
-	public function actionDepartment() {
-		$subwayList = Subway::find()->asArray()->all();
+	public function actionDepartment($id = null) {
+		header('Content-Type: text/html; charset=utf-8');
 		
+		$subwayList = Subway::find()->asArray()->all();
 		$departmentList = Department::find()->asArray()->all();
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
-		return $this->render('department', [
+		
+		$department = Department::findOne(['DepartmentUrl' => $id]);
+		
+		if($department) {
+			$this->department = $department;
+			$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatCity = "МОСКВА" AND FlatDepartment = ' . $department->DepartmentIndex;
+			$this->itemList = $this->getItemList($sql);
+			$actionName = 'department';
+		} else {
+			$actionName = 'departmentlist';
+		}
+		
+		return $this->render($actionName, [
+			'itemList' => $this->itemList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
@@ -202,17 +218,30 @@ class VtorichnoeProdazhaController extends Controller
 			'district' => $this->district,
 			'streetList' => $streetList,
 			'street' => $this->street,
-			
 		]);
 	}
 	
-	public function actionSubway() {
-		$subwayList = Subway::find()->asArray()->all();
+	public function actionSubway($id = null) {
+		header('Content-Type: text/html; charset=utf-8');
 		
+		$subwayList = Subway::find()->asArray()->all();
 		$departmentList = Department::find()->asArray()->all();
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
-		return $this->render('subway', [
+		
+		$subway = Subway::findOne(['SubwayUrl' => $id]);
+		
+		if($subway) {
+			$this->subway = $subway;
+			$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatCity = "МОСКВА" AND FlatSubway = ' . $subway->SubwayIndex;
+			$this->itemList = $this->getItemList($sql);
+			$actionName = 'subway';
+		} else {
+			$actionName = 'subwaylist';
+		}
+		
+		return $this->render($actionName, [
+			'itemList' => $this->itemList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
@@ -225,17 +254,30 @@ class VtorichnoeProdazhaController extends Controller
 			'district' => $this->district,
 			'streetList' => $streetList,
 			'street' => $this->street,
-			
 		]);
 	}
 	
-	public function actionDistrict() {
-		$subwayList = Subway::find()->asArray()->all();
+	public function actionDistrict($id = null) {
+		header('Content-Type: text/html; charset=utf-8');
 		
+		$subwayList = Subway::find()->asArray()->all();
 		$departmentList = Department::find()->asArray()->all();
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
-		return $this->render('district', [
+		
+		$district = District::findOne(['DistrictUrl' => $id]);
+		
+		if($district) {
+			$this->district = $district;
+			$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatCity = "МОСКВА" AND FlatDistrict = ' . $district->DistrictIndex;
+			$this->itemList = $this->getItemList($sql);
+			$actionName = 'district';
+		} else {
+			$actionName = 'districtlist';
+		}
+		
+		return $this->render($actionName, [
+			'itemList' => $this->itemList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
@@ -248,17 +290,30 @@ class VtorichnoeProdazhaController extends Controller
 			'district' => $this->district,
 			'streetList' => $streetList,
 			'street' => $this->street,
-			
 		]);
 	}
 	
-	public function actionStreet() {
-		$subwayList = Subway::find()->asArray()->all();
+	public function actionStreet($id = null) {
+		header('Content-Type: text/html; charset=utf-8');
 		
+		$subwayList = Subway::find()->asArray()->all();
 		$departmentList = Department::find()->asArray()->all();
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
-		return $this->render('street', [
+		
+		$street = Street::findOne(['StreetUrl' => $id]);
+		
+		if($street) {
+			$this->street = $street;
+			$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatCity = "МОСКВА" AND FlatStreet = ' . $street->StreetIndex;
+			$this->itemList = $this->getItemList($sql);
+			$actionName = 'street';
+		} else {
+			$actionName = 'streetlist';
+		}
+		
+		return $this->render($actionName, [
+			'itemList' => $this->itemList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
@@ -271,7 +326,6 @@ class VtorichnoeProdazhaController extends Controller
 			'district' => $this->district,
 			'streetList' => $streetList,
 			'street' => $this->street,
-			
 		]);
 	}
 
@@ -369,7 +423,7 @@ class VtorichnoeProdazhaController extends Controller
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
 		
-		$flatList = $this->getFlatList($sql);
+		$flatList = $this->getItemList($sql);
 		
 		return $this->render('odnakomnatamoskva', [
 			'itemList' => $flatList,
@@ -397,7 +451,7 @@ class VtorichnoeProdazhaController extends Controller
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
 		
-		$flatList = $this->getFlatList($sql);
+		$flatList = $this->getItemList($sql);
 		
 		return $this->render('dvekomnatymoskva', [
 			'itemList' => $flatList,
@@ -425,7 +479,7 @@ class VtorichnoeProdazhaController extends Controller
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
 		
-		$flatList = $this->getFlatList($sql);
+		$flatList = $this->getItemList($sql);
 		
 		return $this->render('trikomnatymoskva', [
 			'itemList' => $flatList,
@@ -453,7 +507,7 @@ class VtorichnoeProdazhaController extends Controller
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
 		
-		$flatList = $this->getFlatList($sql);
+		$flatList = $this->getItemList($sql);
 		
 		return $this->render('chetyrekomnatymoskva', [
 			'itemList' => $flatList,
@@ -476,14 +530,27 @@ class VtorichnoeProdazhaController extends Controller
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 1 AND NOT FlatCity = "МОСКВА"';
 		
-		$flatList = $this->getFlatList($sql);
+		$subwayList = Subway::find()->asArray()->all();
+		$departmentList = Department::find()->asArray()->all();
+		$districtList = District::find()->asArray()->all();
+		$streetList = Street::find()->asArray()->all();
 		
-		return $this->render('index', [
-			'flatList' => $flatList,
+		$flatList = $this->getItemList($sql);
+		
+		return $this->render('odnakomnatapodmoskovie', [
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
+			'departmentList' => $departmentList,
+			'department' => $this->department,
+			'districtList' => $districtList,
+			'district' => $this->district,
+			'streetList' => $streetList,
+			'street' => $this->street,
 		]);
 	}
 	
@@ -491,14 +558,27 @@ class VtorichnoeProdazhaController extends Controller
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 2 AND NOT FlatCity = "МОСКВА"';
 		
-		$flatList = $this->getFlatList($sql);
+		$subwayList = Subway::find()->asArray()->all();
+		$departmentList = Department::find()->asArray()->all();
+		$districtList = District::find()->asArray()->all();
+		$streetList = Street::find()->asArray()->all();
 		
-		return $this->render('index', [
-			'flatList' => $flatList,
+		$flatList = $this->getItemList($sql);
+		
+		return $this->render('dvekomnatypodmoskovie', [
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
+			'departmentList' => $departmentList,
+			'department' => $this->department,
+			'districtList' => $districtList,
+			'district' => $this->district,
+			'streetList' => $streetList,
+			'street' => $this->street,
 		]);
 	}
 	
@@ -506,14 +586,27 @@ class VtorichnoeProdazhaController extends Controller
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber = 3 AND NOT FlatCity = "МОСКВА"';
 		
-		$flatList = $this->getFlatList($sql);
+		$subwayList = Subway::find()->asArray()->all();
+		$departmentList = Department::find()->asArray()->all();
+		$districtList = District::find()->asArray()->all();
+		$streetList = Street::find()->asArray()->all();
 		
-		return $this->render('index', [
-			'flatList' => $flatList,
+		$flatList = $this->getItemList($sql);
+		
+		return $this->render('trikomnatypodmoskovie', [
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
+			'departmentList' => $departmentList,
+			'department' => $this->department,
+			'districtList' => $districtList,
+			'district' => $this->district,
+			'streetList' => $streetList,
+			'street' => $this->street,
 		]);
 	}
 	
@@ -521,21 +614,36 @@ class VtorichnoeProdazhaController extends Controller
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА" AND FlatType = "КВАРТИРА" AND FlatRoomNumber >= 4 AND NOT FlatCity = "МОСКВА"';
 		
-		$flatList = $this->getFlatList($sql);
+		$subwayList = Subway::find()->asArray()->all();
+		$departmentList = Department::find()->asArray()->all();
+		$districtList = District::find()->asArray()->all();
+		$streetList = Street::find()->asArray()->all();
 		
-		return $this->render('index', [
-			'flatList' => $flatList,
+		$flatList = $this->getItemList($sql);
+		
+		return $this->render('chetyrekomnatypodmoskovie', [
+			'itemList' => $flatList,
 			'roomNumber' => $this->roomNumber,
 			'flatType' => $this->flatType,
 			'priceMin' => $this->priceMin,
 			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
+			'departmentList' => $departmentList,
+			'department' => $this->department,
+			'districtList' => $districtList,
+			'district' => $this->district,
+			'streetList' => $streetList,
+			'street' => $this->street,
 		]);
 	}
 	
-	public function getFlatList($sql) {
+	public function getItemList($sql) {
 		$connection = Yii::$app->db;
 		return $connection->createCommand($sql)->queryAll();
 	}
+	
+	
 	
 	
 }

@@ -337,7 +337,7 @@ input[type="radio"]:checked + label {
 	float: left;
 }
 
-.fast-filter-list li a, .fast-filter-list li span {
+.fast-filter-list li span {
 	display: block;
 	height: 36px;
 	line-height: 36px;
@@ -348,21 +348,82 @@ input[type="radio"]:checked + label {
 	padding: 0 4px;
 }
 
+.fast-filter-list-link {
+	display: block;
+	height: 36px;
+	line-height: 36px;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 16px;
+	cursor: pointer;
+	padding: 0 4px;
+	text-decoration: underline;
+}
+
+.fast-filter-list-link:hover {
+	color: #FFF;
+	text-decoration: none;
+}
+
+.medium-size-link {
+	font-size: 12px;
+}
+
+.flat-link, .flat-link:visited {
+	text-align: center;
+	color: #FFF;
+	display: block;
+	text-decoration: underline;
+	outline: 0;
+	padding: 3px 0;
+}
+
+.flat-link:focus {
+	outline: 0;
+}
+
+.flat-link:hover {
+	
+	color: #FFF;
+	text-decoration: none;
+	background: #960C2D;
+	border-radius: 3px;
+}
+
+
+
 .fast-filter-list > li > ul {
-	 display: none;
+	display: none;
     list-style: outside none none;
     margin: 0px;
     position: absolute;
-    top: 36px;
+    top: 31px;
     z-index: 99999;
     background: #A7A7A7;
     width: 185px;
+    padding: 10px;
 	
+}
+
+.fast-filter-subtitle {
+	font-weight: bold;
+	margin-bottom: 5px;
 }
 
 .num-item {
 	display: inline-block;
-	margin: 0 15px;
+	width: 25%;
+	float: left;
+	padding: 0 2px;
+	margin-bottom: 10px;
+}
+
+.location-item {
+	display: inline-block;
+	width: 50%;
+	float: left;
+	padding: 0 2px;
+	margin-bottom: 10px;
 }
 
 .select-item {
@@ -522,4 +583,11 @@ span.title {
 .flat-list table td.front-image-cell {
 	width: 110px;
 	text-align: center;
+}
+
+.page-header {
+	font-size: 20px;
+	color: #960C2D;
+	margin: 30px 0;
+	padding: 0;
 }
