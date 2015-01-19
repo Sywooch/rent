@@ -57,13 +57,17 @@ class VtorichnoeArendaController extends Controller
 		]
 	];
 	
+	public $pageHeaders = [
+		'1' => 'одно',
+		'2' => 'двух',
+		'3' => 'трех'
+	];
+	
 	public function actionIndex($street = null, $district = null, $department = null, $subway = null, $roomNumber = null, $flatType = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "АРЕНДА"';
-		$typeStr = '';
-		$priceStr = '';
-		$roomStr = '';
 		$strArr = [];
+		$pageHeader = 'Аренда квартир в Москве и Подмосковье';
 		
 		$subwayList = Subway::find()->asArray()->all();
 		$subwayIndexes = [];
@@ -118,8 +122,10 @@ class VtorichnoeArendaController extends Controller
 			$this->roomNumber = (int)$roomNumber;
 			if($this->roomNumber >= 4) {
 				$roomStr = 'FlatRoomNumber >= 4';
+				$pageHeader = 'Аренда многокомнатных квартир в Москве и Подмосковье';
 			} else {
 				$roomStr = 'FlatRoomNumber = ' . $this->roomNumber;
+				$pageHeader = 'Аренда ' . $this->pageHeaders[$this->roomNumber] . 'комнатных квартир в Москве и Подмосковье';
 			}
 			array_push($strArr, $roomStr);
 		}
@@ -179,6 +185,7 @@ class VtorichnoeArendaController extends Controller
 			'district' => $this->district,
 			'streetList' => $streetList,
 			'street' => $this->street,
+			'pageHeader' => $pageHeader
 		]);
 	}
 

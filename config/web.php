@@ -66,6 +66,7 @@ $config = [
     			'vtorichnoe/prodazha/department/<id>' => 'vtorichnoe/vtorichnoe/department',
     			'vtorichnoe/prodazha/district/<id>' => 'vtorichnoe/vtorichnoe/district',
     			'vtorichnoe/prodazha/street/<id>' => 'vtorichnoe/vtorichnoe/street',
+    			'vtorichnoe/prodazha/podmoskovie/<id>' => 'vtorichnoe/vtorichnoe/podmoskovie',
     			'vtorichnoe/prodazha/kvartiry-moskva' => 'vtorichnoe/vtorichnoe/kvartirymoskva',
     			'vtorichnoe/prodazha/kvartiry-podmoskovie' => 'vtorichnoe/vtorichnoe/kvartirypodmoskovie',
     			'vtorichnoe/prodazha/odnokomnatnye-kvartiry-moskva' => 'vtorichnoe/vtorichnoe/odnokomnatnyekvartirymoskva',

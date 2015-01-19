@@ -19,6 +19,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="/js/chosen.jquery.js"></script>
     <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
     <?php $this->registerCssFile('/css/chosen.css'); ?>
     <?php $this->registerCssFile('/css/jquery.fancybox.css'); ?>

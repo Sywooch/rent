@@ -31,8 +31,8 @@ $this->title = 'Аренда квартир - Аренда торговой не
 			'priceMax' => $priceMax,
 			'areaMin' => $areaMin,
 			'areaMax' => $areaMax,
-			'subwayList' => $subwayList,
-			'subway' => $subway,
+			'cityList' => $cityList,
+			'city' => $city,
 		]); ?>
 		</form>
 	</div>
@@ -75,19 +75,7 @@ $this->title = 'Аренда квартир - Аренда торговой не
 					<span class="title">Регион:</span>
 					<span><?php echo $regions[$item['CommerceRegionId']]['regionTitle']; ?></span>
 				</p>
-				<p>
-					<span class="title">Метро:</span>
-					<span>
-						<?php
-						foreach($subwayList as $subway) :
-							if($item['CommerceSubway'] == $subway['SubwayIndex']) :
-								echo $subway['SubwayTitle'];
-								continue;
-							endif;
-						endforeach;
-						?>
-					</span>
-				</p>
+				
 				<p>
 					<span class="title">Плошадь:</span>
 					<span><?php echo $item['CommerceArea'] . ' м²'; ?></span>

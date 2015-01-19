@@ -37,6 +37,7 @@
 				<input class="input-short" type="text" name="priceMax" value="<?php if($priceMax){echo $priceMax/1000;} ?>" />
 			</div>
 		</div>
+<?php if(Yii::$app->controller->action->id != 'podmoskovie') { ?>
 		<div class="filter-group left-70">
 			<h5>Метро:</h5>
 			<select class="chosen-select" name="subway">
@@ -52,3 +53,20 @@
 		<div class="filter-navigation">
 			<input type="submit" value="Найти" />
 		</div>
+<?php } else {; ?>
+	<div class="filter-group left-70">
+			<h5>Город:</h5>
+			<select class="chosen-select" name="city">
+				<option <?php if(!$city){echo 'selected';} ?> value="">Выберите город</option>
+				<?php foreach($cityList as $cityItem) : ?>
+				<option <?php if($city == $cityItem['CityIndex']){echo 'selected';} ?> value="<?php echo $cityItem['CityIndex']; ?>"><?php echo $cityItem['CityTitle']; ?></option>
+				<?php endforeach; ?>
+			</select>
+			<script>
+				$(".chosen-select").chosen();
+			</script>
+		</div>
+		<div class="filter-navigation">
+			<input type="submit" value="Найти" />
+		</div>
+<?php } ?>

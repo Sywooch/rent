@@ -9,8 +9,8 @@ $this->title = 'Аренда квартир - Вторичное';
 	</ul>
 </div>
 <div class="filter-wrap">
-	<div class="filter-section">
-		<form action="/vtorichnoe/arenda" method="get">
+	<div class="filter-section" id="novostroyki">
+		<form action="/vtorichnoe" method="get">
 		<?php echo $this->render('fastfilter', [
 			'flatType' => $flatType,
 			'roomNumber' => $roomNumber,
@@ -19,11 +19,10 @@ $this->title = 'Аренда квартир - Вторичное';
 			'subwayList' => $subwayList,
 			'subway' => $subway,
 		]); ?>
-		
 		</form>
 	</div>
 </div>
-<h2 class="page-header"><?php echo $pageHeader; ?></h2>
+<h2 class="page-header">Продажа квартир в Подмосковье, город <?php echo $city['CityTitle']; ?></h2>
 <div class="flat-list">
 	<?php foreach($itemList as $item) : ?>
 	<div class="flat-item">
@@ -146,4 +145,3 @@ $this->title = 'Аренда квартир - Вторичное';
 	</div>
 	<?php endforeach; ?>
 </div>
-

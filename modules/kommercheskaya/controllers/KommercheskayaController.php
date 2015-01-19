@@ -5,6 +5,7 @@ use yii\web\Controller;
 use Yii;
 use app\models\Flat;
 use app\models\Subway;
+use app\models\City;
 
 class KommercheskayaController extends Controller
 {
@@ -39,6 +40,7 @@ class KommercheskayaController extends Controller
 	public $class4 = null;
 	
 	public $subway = null;
+	public $city = null;
 	
 	public $strArr = [];
 	
@@ -388,19 +390,19 @@ class KommercheskayaController extends Controller
 		]);
 	}
 
-	public function actionPodmoskovie($subway = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
+	public function actionPodmoskovie($city = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА" AND CommerceRegionId = 2';
 		
-		$subwayList = Subway::find()->asArray()->all();
-		$subwayIndexes = [];
-		foreach($subwayList as $item) :
-			array_push($subwayIndexes, $item['SubwayIndex']);
+		$cityList = City::find()->asArray()->all();
+		$cityIndexes = [];
+		foreach($cityList as $item) :
+			array_push($cityIndexes, $item['CityIndex']);
 		endforeach;
 		
-		if(in_array($subway, $subwayIndexes)) :
-			$this->subway = $subway;
-			$str = 'CommerceSubway = ' . $subway;
+		if(in_array($city, $cityIndexes)) :
+			$this->city = $city;
+			$str = 'CommerceCityId = ' . $city;
 			array_push($this->strArr, $str);
 		endif;
 		
@@ -432,8 +434,8 @@ class KommercheskayaController extends Controller
 			'class4' => $this->class4,
 			'regions' => $this->regions,
 			'officeClasses' => $this->officeClasses,
-			'subwayList' => $subwayList,
-			'subway' => $this->subway,
+			'cityList' => $cityList,
+			'city' => $this->city,
 		]);
 	}
 
