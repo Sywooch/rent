@@ -84,14 +84,55 @@
 		</div>
 		<div class="filter-group left-70">
 			<h5>Метро:</h5>
-			<select class="chosen-select" name="subway">
-				<option <?php if(!$subway){echo 'selected';} ?> value="">Выберите станцию</option>
-				<?php foreach($subwayList as $subwayItem) : ?>
-				<option <?php if($subway == $subwayItem['SubwayIndex']){echo 'selected';} ?> value="<?php echo $subwayItem['SubwayIndex']; ?>"><?php echo $subwayItem['SubwayTitle']; ?></option>
-				<?php endforeach; ?>
-			</select>
+			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+			<a id="inline" class="load-map" href="#map-block">Ajax</a>
+			<div style="display: none;" id="map-block" >
+	<div id="map-canvas" style="height: 700px;width: 700px;"></div>	
+</div>
+<script>
+var map;
+initialize();
+function initialize() {
+	var geocoder = new google.maps.Geocoder();	
+	var center = new google.maps.LatLng(55.7522200,37.6155600); 
+	var mapOptions = {
+		zoom: 15,
+		center: center
+	}
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	//addMarker(map);
+	getAddress(geocoder, map);	
+}
+function getAddress(geocoder, map) {
+	$.post('db.php',{},function(json){
+		for(var key in json){
+			var myLatlng = new google.maps.LatLng(json[key].lat,json[key].lng);
+			var marker;
+			marker = new google.maps.Marker({
+				map: map, 
+				position: myLatlng,
+				title: json[key].name
+			}); 
+			aaa(marker, json[key].id, json[key].name);
+
+		}
+	},'json');			
+}
+			function aaa(marker, id, name){
+				google.maps.event.addListener(marker, 'click', function(){
+					$('#metro').val(id);
+					$('.selected-metro-name').text(name);
+					$.fancybox.close();
+				});
+			}
+</script>
 			<script>
-				$(".chosen-select").chosen();
+				$(document).ready(function() {
+	$("#inline").fancybox({
+				width:700,
+				height:700
+	});
+});
 			</script>
 		</div>
 		<div class="filter-navigation">

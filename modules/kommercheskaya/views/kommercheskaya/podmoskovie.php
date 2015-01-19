@@ -37,6 +37,18 @@ $this->title = 'Аренда квартир - Коммерческая';
 				<input class="input-short" type="text" name="priceMax" value="<?php if($priceMax){echo $priceMax;} ?>" />
 			</div>
 		</div>
+		<div class="filter-group left-70">
+			<h5>Метро:</h5>
+			<select class="chosen-select" name="subway">
+				<option <?php if(!$subway){echo 'selected';} ?> value="">Выберите станцию</option>
+				<?php foreach($subwayList as $subwayItem) : ?>
+				<option <?php if($subway == $subwayItem['SubwayIndex']){echo 'selected';} ?> value="<?php echo $subwayItem['SubwayIndex']; ?>"><?php echo $subwayItem['SubwayTitle']; ?></option>
+				<?php endforeach; ?>
+			</select>
+			<script>
+				$(".chosen-select").chosen();
+			</script>
+		</div>
 		<div class="filter-navigation">
 			<input type="submit" value="Найти" />
 		</div>
@@ -80,6 +92,19 @@ $this->title = 'Аренда квартир - Коммерческая';
 				<p>
 					<span class="title">Регион:</span>
 					<span><?php echo $regions[$item['CommerceRegionId']]['regionTitle']; ?></span>
+				</p>
+				<p>
+					<span class="title">Метро:</span>
+					<span>
+						<?php
+						foreach($subwayList as $subway) :
+							if($item['CommerceSubway'] == $subway['SubwayIndex']) :
+								echo $subway['SubwayTitle'];
+								continue;
+							endif;
+						endforeach;
+						?>
+					</span>
 				</p>
 				<p>
 					<span class="title">Плошадь:</span>

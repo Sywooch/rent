@@ -84,6 +84,26 @@ $config = [
     			'zagorodnaya/<action>' => 'zagorodnaya/zagorodnaya/<action>'
     		]
 		],
+		
+		'assetManager' => array(
+    		'bundles' => array(
+    			'yii\web\YiiAsset' => array(
+    				'js' => array(),
+				),
+				'yii\bootstrap\BootstrapPluginAsset' => array(
+					'js' => array(),
+				),
+				'yii\bootstrap\BootstrapAsset' => array(
+					//'css' => array()
+				),
+				'yii\web\JqueryAsset' => array(
+					'js' => array(),
+				),
+				'app\assets\AppAsset' => array(
+					//'css' => array(),
+				),
+			),
+		),
     ],
     'params' => $params,
 ];

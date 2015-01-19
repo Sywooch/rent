@@ -4,6 +4,7 @@ namespace app\modules\kommercheskaya\controllers;
 use yii\web\Controller;
 use Yii;
 use app\models\Flat;
+use app\models\Subway;
 
 class KommercheskayaController extends Controller
 {
@@ -36,6 +37,8 @@ class KommercheskayaController extends Controller
 	public $class2 = null;
 	public $class3 = null;
 	public $class4 = null;
+	
+	public $subway = null;
 	
 	public $strArr = [];
 	
@@ -308,9 +311,21 @@ class KommercheskayaController extends Controller
 		]);
 	}
 
-	public function actionPodmoskovie($areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
+	public function actionPodmoskovie($subway = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА" AND CommerceRegionId = 2';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		$subwayIndexes = [];
+		foreach($subwayList as $item) :
+			array_push($subwayIndexes, $item['SubwayIndex']);
+		endforeach;
+		
+		if(in_array($subway, $subwayIndexes)) :
+			$this->subway = $subway;
+			$str = 'CommerceSubway = ' . $subway;
+			array_push($this->strArr, $str);
+		endif;
 		
 		if($str = $this->getFilterString($areaMin, $areaMax, 'CommerceArea', 'area')) :
 			array_push($this->strArr, $str);
@@ -339,13 +354,27 @@ class KommercheskayaController extends Controller
 			'class3' => $this->class3,
 			'class4' => $this->class4,
 			'regions' => $this->regions,
-			'officeClasses' => $this->officeClasses
+			'officeClasses' => $this->officeClasses,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
 		]);
 	}
 
-	public function actionSklady($areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
+	public function actionSklady($subway = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА" AND CommerceType = "СКЛАД"';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		$subwayIndexes = [];
+		foreach($subwayList as $item) :
+			array_push($subwayIndexes, $item['SubwayIndex']);
+		endforeach;
+		
+		if(in_array($subway, $subwayIndexes)) :
+			$this->subway = $subway;
+			$str = 'CommerceSubway = ' . $subway;
+			array_push($this->strArr, $str);
+		endif;
 		
 		if($str = $this->getFilterString($areaMin, $areaMax, 'CommerceArea', 'area')) :
 			array_push($this->strArr, $str);
@@ -374,13 +403,27 @@ class KommercheskayaController extends Controller
 			'class3' => $this->class3,
 			'class4' => $this->class4,
 			'regions' => $this->regions,
-			'officeClasses' => $this->officeClasses
+			'officeClasses' => $this->officeClasses,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
 		]);
 	}
 
 	public function actionRegiony($areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА" AND NOT CommerceRegionId IN (1,2)';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		$subwayIndexes = [];
+		foreach($subwayList as $item) :
+			array_push($subwayIndexes, $item['SubwayIndex']);
+		endforeach;
+		
+		if(in_array($subway, $subwayIndexes)) :
+			$this->subway = $subway;
+			$str = 'CommerceSubway = ' . $subway;
+			array_push($this->strArr, $str);
+		endif;
 		
 		if($str = $this->getFilterString($areaMin, $areaMax, 'CommerceArea', 'area')) :
 			array_push($this->strArr, $str);
