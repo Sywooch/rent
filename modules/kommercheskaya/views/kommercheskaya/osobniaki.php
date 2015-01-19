@@ -14,32 +14,25 @@ $this->title = 'Аренда квартир - Коммерческая';
 		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'biznes'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/biznes">Арендный бизнес</a></li>
 		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'podmoskovie'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/podmoskovie">Недвижимость в Подмосковье</a></li>
 		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'sklady'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/sklady">Склады</a></li>
-		<li <?php if(Yii::$app->controller->id == 'kommercheskaya' && Yii::$app->controller->action->id == 'regiony'){echo 'class="active"';} ?>><a href="/kommercheskaya/prodazha/regiony">Регионы</a></li>
+		
 	</ul>
 </div>
 <div class="filter-wrap">
 	
 	<div class="filter-section" id="novostroyki">
 		<form action="" method="get">
-		<div class="filter-group area-filter">
-			<h5>Площадь (м²):</h5>
-			<div class="input-wrap">
-				<input class="input-short" type="text" name="areaMin" value="<?php echo $areaMin; ?>" />
-				<span>—</span>
-				<input class="input-short" type="text" name="areaMax" value="<?php echo $areaMax; ?>" />
-			</div>
-		</div>
-		<div class="filter-group price-filter">
-			<h5>Цена (руб/м²):</h5>
-			<div class="input-wrap">
-				<input class="input-short" type="text" name="priceMin" value="<?php if($priceMin){echo $priceMin;}  ?>" />
-				<span>—</span>
-				<input class="input-short" type="text" name="priceMax" value="<?php if($priceMax){echo $priceMax;} ?>" />
-			</div>
-		</div>
-		<div class="filter-navigation">
-			<input type="submit" value="Найти" />
-		</div>
+		<?php echo $this->render('filter', [
+			'class1' => $class1,
+			'class2' => $class2,
+			'class3' => $class3,
+			'class4' => $class4,
+			'priceMin' => $priceMin,
+			'priceMax' => $priceMax,
+			'areaMin' => $areaMin,
+			'areaMax' => $areaMax,
+			'subwayList' => $subwayList,
+			'subway' => $subway,
+		]); ?>
 		</form>
 	</div>
 </div>
@@ -87,7 +80,7 @@ $this->title = 'Аренда квартир - Коммерческая';
 				</p>
 				<p>
 					<span class="title">Цена:</span>
-					<span><?php echo (int)$item['CommercePrice'] . ' руб/м²'; ?></span>
+					<span><?php echo (int)$item['CommercePrice']/1000 . ' тыс. руб/м²'; ?></span>
 				</p>
 				
 			</div>

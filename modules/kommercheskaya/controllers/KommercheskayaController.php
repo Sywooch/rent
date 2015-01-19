@@ -63,11 +63,17 @@ class KommercheskayaController extends Controller
 	public function getFilterString($min, $max, $field, $type) {
 		if(is_numeric($min)) :
 			$this->{$type . 'Min'} = (int)$min;
+			if($type = 'price') :
+				$this->{$type . 'Min'} = (int)$min*1000;
+			endif;
 			$str = $type . ' >= ' . $this->{$type . 'Min'};
 		endif;
 		
 		if(is_numeric($max)) :
 			$this->{$type . 'Max'} = (int)$max;
+			if($type = 'price') :
+				$this->{$type . 'Max'} = (int)$max*1000;
+			endif;
 			$str = $field . ' <= ' . $this->{$type . 'Max'};
 		endif;
 		
@@ -82,9 +88,21 @@ class KommercheskayaController extends Controller
 		return false;
 	}
 	
-	public function actionIndex($class1 = null, $class2 = null, $class3 = null, $class4 = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
+	public function actionIndex($subway = null, $class1 = null, $class2 = null, $class3 = null, $class4 = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА"';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		$subwayIndexes = [];
+		foreach($subwayList as $item) :
+			array_push($subwayIndexes, $item['SubwayIndex']);
+		endforeach;
+		
+		if(in_array($subway, $subwayIndexes)) :
+			$this->subway = $subway;
+			$str = 'CommerceSubway = ' . $subway;
+			array_push($this->strArr, $str);
+		endif;
 		
 		if($str = $this->getFilterString($areaMin, $areaMax, 'CommerceArea', 'area')) :
 			array_push($this->strArr, $str);
@@ -140,13 +158,28 @@ class KommercheskayaController extends Controller
 			'class3' => $this->class3,
 			'class4' => $this->class4,
 			'regions' => $this->regions,
-			'officeClasses' => $this->officeClasses
+			'officeClasses' => $this->officeClasses,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
+			
 		]);
 	}
 
-	public function actionOfisy($class1 = null, $class2 = null, $class3 = null, $class4 = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
+	public function actionOfisy($subway = null, $class1 = null, $class2 = null, $class3 = null, $class4 = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА" AND CommerceType = "ОФИС"';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		$subwayIndexes = [];
+		foreach($subwayList as $item) :
+			array_push($subwayIndexes, $item['SubwayIndex']);
+		endforeach;
+		
+		if(in_array($subway, $subwayIndexes)) :
+			$this->subway = $subway;
+			$str = 'CommerceSubway = ' . $subway;
+			array_push($this->strArr, $str);
+		endif;
 		
 		if($str = $this->getFilterString($areaMin, $areaMax, 'CommerceArea', 'area')) :
 			array_push($this->strArr, $str);
@@ -202,13 +235,27 @@ class KommercheskayaController extends Controller
 			'class3' => $this->class3,
 			'class4' => $this->class4,
 			'regions' => $this->regions,
-			'officeClasses' => $this->officeClasses
+			'officeClasses' => $this->officeClasses,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
 		]);
 	}
 
-	public function actionOsobniaki($areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
+	public function actionOsobniaki($subway = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА" AND CommerceType = "ОСОБНЯК"';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		$subwayIndexes = [];
+		foreach($subwayList as $item) :
+			array_push($subwayIndexes, $item['SubwayIndex']);
+		endforeach;
+		
+		if(in_array($subway, $subwayIndexes)) :
+			$this->subway = $subway;
+			$str = 'CommerceSubway = ' . $subway;
+			array_push($this->strArr, $str);
+		endif;
 		
 		if($str = $this->getFilterString($areaMin, $areaMax, 'CommerceArea', 'area')) :
 			array_push($this->strArr, $str);
@@ -237,13 +284,27 @@ class KommercheskayaController extends Controller
 			'class3' => $this->class3,
 			'class4' => $this->class4,
 			'regions' => $this->regions,
-			'officeClasses' => $this->officeClasses
+			'officeClasses' => $this->officeClasses,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
 		]);
 	}
 
-	public function actionTorgovaya($areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
+	public function actionTorgovaya($subway = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА" AND CommerceType = "ТОРГОВОЕ"';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		$subwayIndexes = [];
+		foreach($subwayList as $item) :
+			array_push($subwayIndexes, $item['SubwayIndex']);
+		endforeach;
+		
+		if(in_array($subway, $subwayIndexes)) :
+			$this->subway = $subway;
+			$str = 'CommerceSubway = ' . $subway;
+			array_push($this->strArr, $str);
+		endif;
 		
 		if($str = $this->getFilterString($areaMin, $areaMax, 'CommerceArea', 'area')) :
 			array_push($this->strArr, $str);
@@ -272,13 +333,27 @@ class KommercheskayaController extends Controller
 			'class3' => $this->class3,
 			'class4' => $this->class4,
 			'regions' => $this->regions,
-			'officeClasses' => $this->officeClasses
+			'officeClasses' => $this->officeClasses,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
 		]);
 	}
 
-	public function actionBiznes($areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
+	public function actionBiznes($subway = null, $areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА" AND CommerceType = "БИЗНЕС"';
+		
+		$subwayList = Subway::find()->asArray()->all();
+		$subwayIndexes = [];
+		foreach($subwayList as $item) :
+			array_push($subwayIndexes, $item['SubwayIndex']);
+		endforeach;
+		
+		if(in_array($subway, $subwayIndexes)) :
+			$this->subway = $subway;
+			$str = 'CommerceSubway = ' . $subway;
+			array_push($this->strArr, $str);
+		endif;
 		
 		if($str = $this->getFilterString($areaMin, $areaMax, 'CommerceArea', 'area')) :
 			array_push($this->strArr, $str);
@@ -307,7 +382,9 @@ class KommercheskayaController extends Controller
 			'class3' => $this->class3,
 			'class4' => $this->class4,
 			'regions' => $this->regions,
-			'officeClasses' => $this->officeClasses
+			'officeClasses' => $this->officeClasses,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
 		]);
 	}
 
@@ -409,52 +486,7 @@ class KommercheskayaController extends Controller
 		]);
 	}
 
-	public function actionRegiony($areaMin = null, $areaMax = null, $priceMin = null, $priceMax = null) {
-		header('Content-Type: text/html; charset=utf-8');
-		$sql = 'SELECT * FROM commerce WHERE CommerceAction = "ПРОДАЖА" AND NOT CommerceRegionId IN (1,2)';
-		
-		$subwayList = Subway::find()->asArray()->all();
-		$subwayIndexes = [];
-		foreach($subwayList as $item) :
-			array_push($subwayIndexes, $item['SubwayIndex']);
-		endforeach;
-		
-		if(in_array($subway, $subwayIndexes)) :
-			$this->subway = $subway;
-			$str = 'CommerceSubway = ' . $subway;
-			array_push($this->strArr, $str);
-		endif;
-		
-		if($str = $this->getFilterString($areaMin, $areaMax, 'CommerceArea', 'area')) :
-			array_push($this->strArr, $str);
-		endif;
-		
-		if($str = $this->getFilterString($priceMin, $priceMax, 'CommercePrice', 'price')) :
-			array_push($this->strArr, $str);
-		endif;
-		
-		if(count($this->strArr) > 1) {
-			$sql .= ' AND ' . implode(' AND ', $this->strArr);
-		} elseif(count($this->strArr) == 1) {
-			$sql .= ' AND ' . $this->strArr[0];
-		}
-
-		$connection = Yii::$app->db;
-		$itemList = $connection->createCommand($sql)->queryAll();
-		return $this->render('regiony', [
-			'itemList' => $itemList,
-			'areaMin' => $this->areaMin,
-			'areaMax' => $this->areaMax,
-			'priceMin' => $this->priceMin,
-			'priceMax' => $this->priceMax,
-			'class1' => $this->class1,
-			'class2' => $this->class2,
-			'class3' => $this->class3,
-			'class4' => $this->class4,
-			'regions' => $this->regions,
-			'officeClasses' => $this->officeClasses
-		]);
-	}
+	
 	
 	
 }
