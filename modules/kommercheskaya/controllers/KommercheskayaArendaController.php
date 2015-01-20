@@ -65,7 +65,7 @@ class KommercheskayaArendaController extends Controller
 	public function getFilterString($min, $max, $field, $type) {
 		if(is_numeric($min)) :
 			$this->{$type . 'Min'} = (int)$min;
-			if($type = 'price') :
+			if($type == 'price') :
 				$this->{$type . 'Min'} = (int)$min*1000;
 			endif;
 			$str = $type . ' >= ' . $this->{$type . 'Min'};
@@ -73,7 +73,7 @@ class KommercheskayaArendaController extends Controller
 		
 		if(is_numeric($max)) :
 			$this->{$type . 'Max'} = (int)$max;
-			if($type = 'price') :
+			if($type == 'price') :
 				$this->{$type . 'Max'} = (int)$max*1000;
 			endif;
 			$str = $field . ' <= ' . $this->{$type . 'Max'};

@@ -58,7 +58,7 @@ $this->title = 'Аренда квартир - Новостройки';
 		</form>
 	</div>
 </div>
-<h2>Продажа коммерческой недвижимости</h2>
+<h2 class="page-header">Продажа новостроек в Москве и Подмосковье</h2>
 <div class="flat-list">
 	<?php foreach($itemList as $item) : ?>
 	<div class="flat-item">

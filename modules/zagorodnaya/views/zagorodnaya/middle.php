@@ -5,7 +5,7 @@ $this->title = 'Аренда квартир - Загородная';
 	<ul>
 		<li <?php if(Yii::$app->controller->id == 'zagorodnaya' && Yii::$app->controller->action->id == 'index'){echo 'class="active"';} ?>><a href="/zagorodnaya">Продажа домов</a></li>
 		<li <?php if(Yii::$app->controller->id == 'zagorodnaya' && Yii::$app->controller->action->id == 'uchastki'){echo 'class="active"';} ?>><a href="/zagorodnaya/uchastki">Продажа участков</a></li>
-		<li <?php if(Yii::$app->controller->id == 'zagorodnaya' && Yii::$app->controller->action->id == 'arenda'){echo 'class="active"';} ?>><a href="/zagorodnaya/arenda">Аренда</a></li>
+		<li <?php if(Yii::$app->controller->id == 'zagorodnaya' && Yii::$app->controller->action->id == 'arenda'){echo 'class="active"';} ?>><a href="/zagorodnaya/arenda_domov">Аренда</a></li>
 	</ul>
 </div>
 <div class="filter-wrap">
@@ -16,16 +16,15 @@ $this->title = 'Аренда квартир - Загородная';
 				<li>
 					<span>Быстрый поиск</span>
 				</li>
-				<li>
-					<a href="/zagorodnaya/ekonom">Эконом</a>
+				<li class="fast-filter-list-link">
+					<a class="flat-link str"  href="/zagorodnaya/ekonom">Эконом</a>
+				</li>
+				<li  class="fast-filter-list-link">
+					<a class="flat-link str"  href="/zagorodnaya/middle">Средний класс</a>
 					
 				</li>
-				<li class="active">
-					<a href="/zagorodnaya/middle">Средний класс</a>
-					
-				</li>
-				<li>
-					<a href="/zagorodnaya/elitnaya">Элитная</a>
+				<li  class="fast-filter-list-link">
+					<a class="flat-link str"  href="/zagorodnaya/elitnaya">Элитная</a>
 				</li>
 			</ul>
 		</div>

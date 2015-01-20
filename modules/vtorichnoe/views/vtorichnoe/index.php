@@ -22,7 +22,7 @@ $this->title = 'Аренда квартир - Вторичное';
 		</form>
 	</div>
 </div>
-<h2 class="page-header">Продажа квартир и комнат в Москве и Подмосковье</h2>
+<h2 class="page-header"><?php echo $pageHeader; ?></h2>
 <div class="flat-list">
 	<?php foreach($itemList as $item) : ?>
 	<div class="flat-item">

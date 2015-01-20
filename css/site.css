@@ -312,13 +312,18 @@ text-decoration: underline;
 outline: 0;
 padding: 3px 0;
 }
+.str {
+	padding: 0;
+	text-decoration: none;
+}
+
 .flat-link:focus {
 outline: 0;
 }
 .flat-link:hover {
 color: #FFF;
 text-decoration: none;
-background: #960C2D;
+
 border-radius: 3px;
 }
 .fast-filter-list > li > ul {
@@ -476,3 +481,29 @@ color: #960C2D;
 margin: 30px 0;
 padding: 0;
 }
+
+#map-block {
+	display: none;
+	width: 700px;
+	height: 700px; 
+}
+
+.load-map, .load-map:hover, .load-map:focus {
+	color: #333;
+	display: block;
+	outline: 0;
+	text-decoration: none;
+	padding: 2px 8px;
+	background: #EEE;
+	border-radius: 3px;
+}
+
+.load-map:hover {
+	background: #CCC;
+}
+
+.selected-metro-name {
+	font-size: 13px;
+	color: #FFF;
+}
+

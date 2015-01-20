@@ -35,6 +35,15 @@ class VtorichnoeProdazhaController extends Controller
 	
 	public $city = null;
 	
+	public $pageHeaders = [
+		'fm' => 'квартир в Москве', 
+		'fmo' => 'квартир в Подмосковье',
+		'rm' => 'комнат в Москве',
+		'rmo' => 'комнат в Подмосковье',
+		'pm' => 'доли в Москве',
+		'pmo' => 'доли в Подмосковье',
+	];
+	
 	public $flatTypes = [
 		'fm' => [
 			'flatType' => 'КВАРТИРА',
@@ -69,6 +78,7 @@ class VtorichnoeProdazhaController extends Controller
 		$priceStr = '';
 		$roomStr = '';
 		$strArr = [];
+		$pageHeader = 'Продажа квартир и комнат в Москве и Подмосковье';
 		
 		$subwayList = Subway::find()->asArray()->all();
 		$subwayIndexes = [];
@@ -139,6 +149,7 @@ class VtorichnoeProdazhaController extends Controller
 			} else {
 				$typeStr .= ' AND NOT FlatCity = "МОСКВА"';
 			}
+			$pageHeader = 'Продажа ' . $this->pageHeaders[$flatType];
 			array_push($strArr, $typeStr);
 		endif;
 		
@@ -185,6 +196,7 @@ class VtorichnoeProdazhaController extends Controller
 			'district' => $this->district,
 			'streetList' => $streetList,
 			'street' => $this->street,
+			'pageHeader' => $pageHeader
 		]);
 	}
 
@@ -415,7 +427,7 @@ class VtorichnoeProdazhaController extends Controller
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
 		
-		$flatList = $this->getFlatList($sql);
+		$flatList = $this->getItemList($sql);
 		
 		return $this->render('kvartirymoskva', [
 			'itemList' => $flatList,
@@ -443,7 +455,7 @@ class VtorichnoeProdazhaController extends Controller
 		$districtList = District::find()->asArray()->all();
 		$streetList = Street::find()->asArray()->all();
 		
-		$flatList = $this->getFlatList($sql);
+		$flatList = $this->getItemList($sql);
 		
 		return $this->render('kvartirypodmoskovie', [
 			'itemList' => $flatList,

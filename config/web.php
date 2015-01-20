@@ -62,6 +62,7 @@ $config = [
     		'enablePrettyUrl' => true,
     		'showScriptName' => false,
     		'rules' => [
+    			'zagorodnaya/arenda_domov' => 'zagorodnaya/zagorodnaya/arenda',
     			'vtorichnoe/prodazha/subway/<id>' => 'vtorichnoe/vtorichnoe/subway',
     			'vtorichnoe/prodazha/department/<id>' => 'vtorichnoe/vtorichnoe/department',
     			'vtorichnoe/prodazha/district/<id>' => 'vtorichnoe/vtorichnoe/district',
@@ -82,7 +83,8 @@ $config = [
     			'vtorichnoe/prodazha/<action>' => 'vtorichnoe/vtorichnoe/<action>',
     			
     			'kommercheskaya/prodazha/<action>' => 'kommercheskaya/kommercheskaya/<action>',
-    			'zagorodnaya/<action>' => 'zagorodnaya/zagorodnaya/<action>'
+    			'zagorodnaya/<action>' => 'zagorodnaya/zagorodnaya/<action>',
+    			
     		]
 		],
 		

@@ -85,55 +85,70 @@
 		<div class="filter-group left-70">
 			<h5>Метро:</h5>
 			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-			<a id="inline" class="load-map" href="#map-block">Ajax</a>
-			<div style="display: none;" id="map-block" >
-	<div id="map-canvas" style="height: 700px;width: 700px;"></div>	
-</div>
+			<input type="hidden" name="subway" id="metro" value="">
+			<a id="inline" class="load-map" href="#map-block">Выбор станции</a>
+			<div class="selected-metro-name"></div>
+			<div id="map-block" >
+				<div id="map-canvas" style="height: 700px;width: 700px;"></div>
 <script>
 var map;
-initialize();
+init = false;
+subways = new Array;
+	<?php foreach($subwayList as $subway) : ?>
+	var subway = new Object;
+	subway.index = <?php echo $subway['SubwayIndex']; ?>;
+	subway.lat = <?php echo $subway['SubwayLat']; ?>;
+	subway.lng = <?php echo $subway['SubwayLng']; ?>;
+	subway.title = "<?php echo $subway['SubwayTitle']; ?>";
+	subways.push(subway);
+	<?php endforeach; ?>
+
+function getAddress(geocoder, map) {
+	subways.forEach(pasteMarker);
+}
 function initialize() {
+	if(!init) {
 	var geocoder = new google.maps.Geocoder();	
 	var center = new google.maps.LatLng(55.7522200,37.6155600); 
 	var mapOptions = {
-		zoom: 15,
+		zoom: 10,
 		center: center
 	}
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	//addMarker(map);
-	getAddress(geocoder, map);	
+	getAddress(geocoder, map);
+	init = true;
+	}
 }
-function getAddress(geocoder, map) {
-	$.post('db.php',{},function(json){
-		for(var key in json){
-			var myLatlng = new google.maps.LatLng(json[key].lat,json[key].lng);
-			var marker;
-			marker = new google.maps.Marker({
+
+function resize() {
+	google.maps.event.trigger(map, "resize");
+}
+function pasteMarker(element) {
+		var myLatlng = new google.maps.LatLng(element.lat,element.lng);
+		var marker;
+		marker = new google.maps.Marker({
 				map: map, 
 				position: myLatlng,
-				title: json[key].name
+				title: element.title
 			}); 
-			aaa(marker, json[key].id, json[key].name);
+			aaa(marker, element.index, element.title);
+}	
 
-		}
-	},'json');			
+function aaa(marker, id, name){
+	google.maps.event.addListener(marker, 'click', function(){
+		$('#metro').val(id);
+		$('.selected-metro-name').text(name);
+		$.fancybox.close();
+	});
 }
-			function aaa(marker, id, name){
-				google.maps.event.addListener(marker, 'click', function(){
-					$('#metro').val(id);
-					$('.selected-metro-name').text(name);
-					$.fancybox.close();
-				});
-			}
-</script>
-			<script>
-				$(document).ready(function() {
+$(document).ready(function() {
 	$("#inline").fancybox({
-				width:700,
-				height:700
+		beforeLoad: initialize
 	});
 });
-			</script>
+</script>	
+			</div><!-- .map-block -->
+
 		</div>
 		<div class="filter-navigation">
 			<input type="submit" value="Найти" />
