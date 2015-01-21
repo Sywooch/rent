@@ -89,7 +89,9 @@
 			<a id="inline" class="load-map" href="#map-block">Выбор станции</a>
 			<div class="selected-metro-name"></div>
 			<div id="map-block" >
-				<div id="map-canvas" style="height: 700px;width: 700px;"></div>
+				<img src="/img/moscow_metro_map_api.jpg" />
+
+			</div><!-- .map-block -->
 <script>
 var map;
 init = false;
@@ -143,12 +145,10 @@ function aaa(marker, id, name){
 }
 $(document).ready(function() {
 	$("#inline").fancybox({
-		beforeLoad: initialize
+		//beforeLoad: initialize
 	});
 });
 </script>	
-			</div><!-- .map-block -->
-
 		</div>
 		<div class="filter-navigation">
 			<input type="submit" value="Найти" />

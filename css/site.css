@@ -272,7 +272,7 @@ clear: both;
 height: 0px;
 }
 .fast-filter-list > li {
-margin-left: 60px;
+margin-left: 30px;
 height: 36px;
 float: left;
 }
@@ -484,8 +484,7 @@ padding: 0;
 
 #map-block {
 	display: none;
-	width: 700px;
-	height: 700px; 
+	 
 }
 
 .load-map, .load-map:hover, .load-map:focus {

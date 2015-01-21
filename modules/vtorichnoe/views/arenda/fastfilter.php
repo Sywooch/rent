@@ -9,7 +9,9 @@
 		</li>
 		<li>
 			<a class="fast-filter-list-link"  href="/vtorichnoe/arenda/kvartiry-podmoskovie">Квартиры в Подмосковье</a>
-			
+		</li>
+		<li>
+			<a class="fast-filter-list-link"  href="/vtorichnoe/arenda/komnaty">Комнаты в Москве и Подмосковье</a>
 		</li>
 		
 	</ul>

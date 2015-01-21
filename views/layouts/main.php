@@ -21,6 +21,7 @@ AppAsset::register($this);
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     
     <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/js/moscow_metro_map_api.js"></script>
     <?php $this->registerCssFile('/css/chosen.css'); ?>
     <?php $this->registerCssFile('/css/jquery.fancybox.css'); ?>
     <?php $this->head() ?>

@@ -189,6 +189,41 @@ class VtorichnoeArendaController extends Controller
 		]);
 	}
 
+	public function actionKomnaty() {
+		header('Content-Type: text/html; charset=utf-8');
+		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "АРЕНДА" AND FlatType = "КОМНАТА"';
+		$typeStr = '';
+		$priceStr = '';
+		$roomStr = '';
+		$strArr = [];
+		
+		$subwayList = Subway::find()->asArray()->all();
+		
+		$departmentList = Department::find()->asArray()->all();
+		$districtList = District::find()->asArray()->all();
+		$streetList = Street::find()->asArray()->all();
+		
+		
+		$connection = Yii::$app->db;
+		$flatList = $connection->createCommand($sql)->queryAll();
+		
+		return $this->render('komnaty', [
+			'itemList' => $flatList,
+			'roomNumber' => $this->roomNumber,
+			'flatType' => $this->flatType,
+			'priceMin' => $this->priceMin,
+			'priceMax' => $this->priceMax,
+			'subwayList' => $subwayList,
+			'subway' => $this->subway,
+			'departmentList' => $departmentList,
+			'department' => $this->department,
+			'districtList' => $districtList,
+			'district' => $this->district,
+			'streetList' => $streetList,
+			'street' => $this->street,
+		]);
+	}
+
 	public function actionKvartirymoskva() {
 		header('Content-Type: text/html; charset=utf-8');
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "АРЕНДА" AND FlatType = "КВАРТИРА" AND FlatCity = "МОСКВА"';
