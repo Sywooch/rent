@@ -5,7 +5,7 @@ $this->title = 'Аренда квартир - Загородная';
 	<ul>
 		<li <?php if(Yii::$app->controller->id == 'zagorodnaya' && Yii::$app->controller->action->id == 'index'){echo 'class="active"';} ?>><a href="/zagorodnaya">Продажа домов</a></li>
 		<li <?php if(Yii::$app->controller->id == 'zagorodnaya' && Yii::$app->controller->action->id == 'uchastki'){echo 'class="active"';} ?>><a href="/zagorodnaya/uchastki">Продажа участков</a></li>
-		<li <?php if(Yii::$app->controller->id == 'zagorodnaya' && Yii::$app->controller->action->id == 'arenda'){echo 'class="active"';} ?>><a href="/zagorodnaya/arenda_domov">Аренда</a></li>
+		<li <?php if(Yii::$app->controller->id == 'zagorodnaya' && Yii::$app->controller->action->id == 'arenda'){echo 'class="active"';} ?>><a href="/zagorodnaya/arenda_domov">Аренда домов</a></li>
 	</ul>
 </div>
 <div class="filter-wrap">

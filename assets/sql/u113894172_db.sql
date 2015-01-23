@@ -4,8 +4,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 23, 2015 at 03:07 PM
--- Server version: 5.1.66
+-- Generation Time: Jan 23, 2015 at 01:26 PM
+-- Server version: 5.1.69
 -- PHP Version: 5.2.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `u920403952_yii`
+-- Database: `u113894172_db`
 --
 
 -- --------------------------------------------------------

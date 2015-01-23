@@ -73,6 +73,7 @@ class VtorichnoeProdazhaController extends Controller
 	
 	public function actionIndex($street = null, $district = null, $department = null, $subway = null, $roomNumber = null, $flatType = null, $priceMin = null, $priceMax = null) {
 		header('Content-Type: text/html; charset=utf-8');
+		
 		$sql = 'SELECT * FROM flat WHERE FlatSection = "ВТОРИЧНОЕ" AND FlatAction = "ПРОДАЖА"';
 		$typeStr = '';
 		$priceStr = '';
@@ -203,10 +204,10 @@ class VtorichnoeProdazhaController extends Controller
 	public function actionDepartment($id = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		
-		$subwayList = Subway::find()->asArray()->all();
-		$departmentList = Department::find()->asArray()->all();
-		$districtList = District::find()->asArray()->all();
-		$streetList = Street::find()->asArray()->all();
+		$subwayList = Subway::find()->orderBy('SubwayTitle')->asArray()->all();
+		$departmentList = Department::find()->orderBy('DepartmentTitle')->asArray()->all();
+		$districtList = District::find()->orderBy('DistrictTitle')->asArray()->all();
+		$streetList = Street::find()->orderBy('StreetTitle')->asArray()->all();
 		
 		$department = Department::findOne(['DepartmentUrl' => $id]);
 		
@@ -239,10 +240,10 @@ class VtorichnoeProdazhaController extends Controller
 	public function actionSubway($id = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		
-		$subwayList = Subway::find()->asArray()->all();
-		$departmentList = Department::find()->asArray()->all();
-		$districtList = District::find()->asArray()->all();
-		$streetList = Street::find()->asArray()->all();
+		$subwayList = Subway::find()->orderBy('SubwayTitle')->asArray()->all();
+		$departmentList = Department::find()->orderBy('DepartmentTitle')->asArray()->all();
+		$districtList = District::find()->orderBy('DistrictTitle')->asArray()->all();
+		$streetList = Street::find()->orderBy('StreetTitle')->asArray()->all();
 		
 		$subway = Subway::findOne(['SubwayUrl' => $id]);
 		
@@ -275,10 +276,10 @@ class VtorichnoeProdazhaController extends Controller
 	public function actionDistrict($id = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		
-		$subwayList = Subway::find()->asArray()->all();
-		$departmentList = Department::find()->asArray()->all();
-		$districtList = District::find()->asArray()->all();
-		$streetList = Street::find()->asArray()->all();
+		$subwayList = Subway::find()->orderBy('SubwayTitle')->asArray()->all();
+		$departmentList = Department::find()->orderBy('DepartmentTitle')->asArray()->all();
+		$districtList = District::find()->orderBy('DistrictTitle')->asArray()->all();
+		$streetList = Street::find()->orderBy('StreetTitle')->asArray()->all();
 		
 		$district = District::findOne(['DistrictUrl' => $id]);
 		
@@ -311,10 +312,10 @@ class VtorichnoeProdazhaController extends Controller
 	public function actionStreet($id = null) {
 		header('Content-Type: text/html; charset=utf-8');
 		
-		$subwayList = Subway::find()->asArray()->all();
-		$departmentList = Department::find()->asArray()->all();
-		$districtList = District::find()->asArray()->all();
-		$streetList = Street::find()->asArray()->all();
+		$subwayList = Subway::find()->orderBy('SubwayTitle')->asArray()->all();
+		$departmentList = Department::find()->orderBy('DepartmentTitle')->asArray()->all();
+		$districtList = District::find()->orderBy('DistrictTitle')->asArray()->all();
+		$streetList = Street::find()->orderBy('StreetTitle')->asArray()->all();
 		
 		$street = Street::findOne(['StreetUrl' => $id]);
 		
