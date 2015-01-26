@@ -140,7 +140,7 @@ class ZagorodnayaController extends Controller
 	public function getFilterString($min, $max, $field, $type) {
 		if(is_numeric($min)) :
 			$this->{$type . 'Min'} = (int)$min;
-			$str = $type . ' >= ' . $this->{$type . 'Min'};
+			$str = $field . ' >= ' . $this->{$type . 'Min'};
 		endif;
 		
 		if(is_numeric($max)) :
@@ -185,7 +185,7 @@ class ZagorodnayaController extends Controller
 			array_push($this->strArr, $str);
 		endif;
 		
-		 
+		
 		
 		if(count($this->strArr) > 1) {
 			$sql .= ' AND ' . implode(' AND ', $this->strArr);

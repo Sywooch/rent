@@ -38,70 +38,55 @@
 		</div>
 		<div class="filter-group left-70">
 			<h5>Метро:</h5>
-			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-			<input type="hidden" name="subway" id="metro" value="">
-			<a id="inline" class="load-map" href="#map-block">Выбор станции</a>
-			<div class="selected-metro-name"></div>
-			<div id="map-block" >
-				<div id="map-canvas" style="height: 700px;width: 700px;"></div>
+			<div id="metro">
+  					<input type="hidden" id="metro_input" name="subway" value="[]">
+ 				</div>
+ 				<div id="MetroMainCont" style=" float:left; width:1120; height:1040px; margin-top:10px; background-color:#FFFFFF; display:none;">
+  					<div style="position:absolute;width:150px;right:0;z-index:100000;background-color:#fff; font-size:10px;" id="metro_list">
+   						<ul style="margin:0; padding:0 0 0 10px;"></ul>
+   						<div style="font-size:14px;">
+    						<a href="javascript:void(o)" onclick="$.fancybox.close();" class="btn">Выбрать</a>
+   						</div>
+  					</div>
+ 				</div>
+ 				<a class="load-map various" href="#MetroMainCont">Выбрать станцию</a>
+ 				<div class="selected-metro-name"></div>
 <script>
-var map;
-init = false;
-subways = new Array;
-	<?php foreach($subwayList as $subway) : ?>
-	var subway = new Object;
-	subway.index = <?php echo $subway['SubwayIndex']; ?>;
-	subway.lat = <?php echo $subway['SubwayLat']; ?>;
-	subway.lng = <?php echo $subway['SubwayLng']; ?>;
-	subway.title = "<?php echo $subway['SubwayTitle']; ?>";
-	subways.push(subway);
-	<?php endforeach; ?>
-
-function getAddress(geocoder, map) {
-	subways.forEach(pasteMarker);
-}
-function initialize() {
-	if(!init) {
-	var geocoder = new google.maps.Geocoder();	
-	var center = new google.maps.LatLng(55.7522200,37.6155600); 
-	var mapOptions = {
-		zoom: 10,
-		center: center
-	}
-	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	getAddress(geocoder, map);
-	init = true;
-	}
-}
-
-function resize() {
-	google.maps.event.trigger(map, "resize");
-}
-function pasteMarker(element) {
-		var myLatlng = new google.maps.LatLng(element.lat,element.lng);
-		var marker;
-		marker = new google.maps.Marker({
-				map: map, 
-				position: myLatlng,
-				title: element.title
-			}); 
-			aaa(marker, element.index, element.title);
-}	
-
-function aaa(marker, id, name){
-	google.maps.event.addListener(marker, 'click', function(){
-		$('#metro').val(id);
-		$('.selected-metro-name').text(name);
-		$.fancybox.close();
-	});
-}
-$(document).ready(function() {
-	$("#inline").fancybox({
-		beforeLoad: initialize
-	});
-});
-</script>	
-			</div><!-- .map-block -->
+    $(document).ready(function () {
+        MosMapApi_Setup('MetroMainCont');
+    });
+    function MertoActive(p_StationName, p_StationID) {
+  var metro = $('#metro_list ul');
+  var metro_input = $('#metro_input');
+  if(metro.find('li.metro_list_'+p_StationID).length > 0){
+   //metro_input.find('[name="metro['+p_StationID+']"]').remove();
+   metro.find('li.metro_list_'+p_StationID).remove();
+  }else{
+   //metro_input.append('<input type="hidden" name="metro['+p_StationID+']" value="'+p_StationID+'">');
+   metro.append('<li class="metro_list_'+p_StationID+'" data-id="'+p_StationID+'">'+p_StationName+'</li>');  
+  }
+  var metro_id = [];
+  metro.find('li').each(function(){
+   metro_id.push($(this).attr('data-id'));
+  });
+  metro_input.attr('value', '['+metro_id+']')  
+        //alert(p_StationName + " " + p_StationID);
+  //$('#metro').val(p_StationID);
+  $('.selected-metro-name').text('Выбрано станций '+$('#metro_list ul li').length);
+    }
+ $(".various").fancybox({
+  maxWidth : 1120,
+  maxHeight : 1040,
+  fitToView : false,
+  width  : '100%',
+  height  : '100%',
+  autoSize : false,
+  closeClick : false,
+  openEffect : 'none',
+  closeEffect : 'none'
+ }); 
+ 
+</script>
 
 		</div>
 		<div class="filter-navigation">

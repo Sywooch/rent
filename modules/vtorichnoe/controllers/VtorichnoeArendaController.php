@@ -75,9 +75,29 @@ class VtorichnoeArendaController extends Controller
 			array_push($subwayIndexes, $item['SubwayIndex']);
 		endforeach;
 		
-		if(in_array($subway, $subwayIndexes)) :
-			$this->subway = $subway;
-			$str = 'FlatSubway = ' . $subway;
+		try {
+			$subwayArray = json_decode($subway);
+			
+		} catch(Exception $e) {
+			
+			$subwayArray = null;
+		}
+		
+		$queryArray = [];
+		
+		if($subwayArray) :
+			foreach($subwayArray as $item) :
+				echo $item . '<br />';
+				if(in_array($item, $subwayIndexes)) :
+					array_push($queryArray, $item);
+				endif;
+			endforeach;
+		endif;
+		
+		
+		if(!empty($queryArray)) :
+			$this->subway = $queryArray;
+			$str = 'FlatSubway IN (' . implode(',', $queryArray) . ')';
 			array_push($strArr, $str);
 		endif;
 		

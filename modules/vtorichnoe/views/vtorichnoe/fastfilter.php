@@ -84,51 +84,56 @@
 		</div>
 		<div class="filter-group left-70">
 			<h5>Метро:</h5>			
-			<div class="selected-metro-name"></div>
-			<div id="subway">
-			</div>
-			<div id="MetroMainCont" style=" float:left; width:1040; height:1040px; margin-top:10px; background-color:#FFFFFF; display:none;">
-				<div style="position:absolute;width:150px;right:0;z-index:100000;background-color:#fff; font-size:12px;" id="metro_list">
-					<ul style="margin:0; padding:0 0 0 10px;">
-
-					</ul>
-					<div style="font-size:14px;">
-						<a href="javascript:void(0)" onclick="$.fancybox.close();" class="btn">Выбрать</a>
-					</div>
-				</div>
-			</div>
-			<a class="load-map various" href="#MetroMainCont">Выбрать станцию</a>
+				<div id="metro">
+  					<input type="hidden" id="metro_input" name="subway" value="[]">
+ 				</div>
+ 				<div id="MetroMainCont" style=" float:left; width:1120; height:1040px; margin-top:10px; background-color:#FFFFFF; display:none;">
+  					<div style="position:absolute;width:150px;right:0;z-index:100000;background-color:#fff; font-size:10px;" id="metro_list">
+   						<ul style="margin:0; padding:0 0 0 10px;"></ul>
+   						<div style="font-size:14px;">
+    						<a href="javascript:void(o)" onclick="$.fancybox.close();" class="btn">Выбрать</a>
+   						</div>
+  					</div>
+ 				</div>
+ 				<a class="load-map various" href="#MetroMainCont">Выбрать станцию</a>
+ 				<div class="selected-metro-name"></div>
 <script>
     $(document).ready(function () {
         MosMapApi_Setup('MetroMainCont');
     });
 
     function MertoActive(p_StationName, p_StationID) {
-		var metro = $('#metro_list ul');
-		var metro_input = $('#subway');
-		if(metro.find('li.metro_list_'+p_StationID).length > 0){
-			metro_input.find('[name="subway['+p_StationID+']"]').remove();
-			metro.find('li.metro_list_'+p_StationID).remove();
-		}else{
-			metro_input.append('<input type="hidden" name="subway['+p_StationID+']" value="'+p_StationID+'">');
-			metro.append('<li class="metro_list_'+p_StationID+'">'+p_StationName+'</li>');
-		}
+  var metro = $('#metro_list ul');
+  var metro_input = $('#metro_input');
+  if(metro.find('li.metro_list_'+p_StationID).length > 0){
+   //metro_input.find('[name="metro['+p_StationID+']"]').remove();
+   metro.find('li.metro_list_'+p_StationID).remove();
+  }else{
+   //metro_input.append('<input type="hidden" name="metro['+p_StationID+']" value="'+p_StationID+'">');
+   metro.append('<li class="metro_list_'+p_StationID+'" data-id="'+p_StationID+'">'+p_StationName+'</li>');  
+  }
+  var metro_id = [];
+  metro.find('li').each(function(){
+   metro_id.push($(this).attr('data-id'));
+  });
+  metro_input.attr('value', '['+metro_id+']')  
         //alert(p_StationName + " " + p_StationID);
-		$('#subway').val(p_StationID);
-		$('.selected-metro-name').text('Выбрано станций '+$('#metro_list ul li').length);
+  //$('#metro').val(p_StationID);
+  $('.selected-metro-name').text('Выбрано станций '+$('#metro_list ul li').length);
     }
-	$(".various").fancybox({
-		maxWidth	: 1040,
-		maxHeight	: 1040,
-		fitToView	: false,
-		width		: '100%',
-		height		: '100%',
-		autoSize	: false,
-		closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});	
-</script>	
+ $(".various").fancybox({
+  maxWidth : 1120,
+  maxHeight : 1040,
+  fitToView : false,
+  width  : '100%',
+  height  : '100%',
+  autoSize : false,
+  closeClick : false,
+  openEffect : 'none',
+  closeEffect : 'none'
+ }); 
+ 
+</script>
 		</div>
 		<div class="filter-navigation">
 			<input type="submit" value="Найти" />
