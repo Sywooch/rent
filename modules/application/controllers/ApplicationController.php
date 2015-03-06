@@ -6,10 +6,21 @@ use Yii;
 
 class ApplicationController extends Controller
 {
-	public $enableCsrfValidation = false;
+	public $enableCsrfValidation = true;
 	
 	public function actionIndex() {
 		return $this->render('index');
+	}
+	
+	public function actionCheck() {
+		$request = Yii::$app->request;
+		if($request->isPost) {
+			$response = [];
+			$response['response'] = $request->method;
+			return json_encode(['qqq' => 'ssss']);
+		} else {
+			echo 'fdfdfdf';die;
+		}
 	}
 	
 		

@@ -20,6 +20,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     
+    
     <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
     <script id="MetroMapAPI" type="text/javascript" src="/js/moscow_metro_map_api.js"></script>
     <?php $this->registerCssFile('/css/chosen.css'); ?>
