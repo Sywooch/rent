@@ -23,6 +23,10 @@ $config = [
 		'kommercheskaya' => [
     		'class' => 'app\modules\kommercheskaya\Kommercheskaya',
 		],
+		'twitter' => [
+    		'class' => 'app\modules\twitter\Twitter',
+		],
+		
 	),
     'components' => [
         'request' => [
